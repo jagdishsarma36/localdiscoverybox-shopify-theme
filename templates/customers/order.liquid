@@ -1,0 +1,32 @@
+<section style="padding: 4.5rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container-narrow">
+    <div style="margin-bottom: 2rem;">
+      <a href="/account" class="pill pill-paper" style="margin-bottom: 0.5rem; text-decoration: none;">&larr; Back to Account</a>
+      <h1 style="font-size: 2.2rem; font-weight: 800;">Order {{ order.name }}</h1>
+      <p class="text-ink-soft">Placed on {{ order.created_at | date: "%B %d, %Y at %I:%M %p" }}</p>
+    </div>
+
+    <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-pop);">
+      <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">Items in this Shipment</h2>
+      {% for line_item in order.line_items %}
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px dashed rgba(0,23,79,0.2);">
+          <div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;">{{ line_item.title }}</div>
+            {% if line_item.selling_plan_allocation %}
+              <span class="pill pill-coral" style="font-size: 0.75rem; margin-top: 0.25rem;">★ {{ line_item.selling_plan_allocation.selling_plan.name }}</span>
+            {% endif %}
+            <div class="text-ink-soft" style="font-size: 0.85rem; margin-top: 0.25rem;">Qty: {{ line_item.quantity }}</div>
+          </div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;">
+            {{ line_item.final_line_price | money }}
+          </div>
+        </div>
+      {% endfor %}
+      
+      <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;">
+        <span>Total</span>
+        <span>{{ order.total_net_amount | money_with_currency }}</span>
+      </div>
+    </div>
+  </div>
+</section>

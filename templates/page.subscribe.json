@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "plans": {
+      "type": "subscribe-plans",
+      "settings": {}
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
+    }
+  },
+  "order": [
+    "plans",
+    "how_it_works",
+    "testimonials"
+  ]
+}

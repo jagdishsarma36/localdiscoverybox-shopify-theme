@@ -1,0 +1,28 @@
+<section style="padding: 4.5rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container-narrow">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <div>
+        <a href="/account" class="pill pill-paper" style="margin-bottom: 0.5rem; text-decoration: none;">&larr; Back to My Boxes</a>
+        <h1 style="font-size: 2.2rem; font-weight: 800;">Saved Shipping Addresses</h1>
+      </div>
+    </div>
+
+    <div style="display: grid; gap: 1.5rem;">
+      {% for address in customer.addresses %}
+        <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-pop-sm);">
+          {% if address == customer.default_address %}
+            <span class="pill pill-sun" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Default Box Delivery Address</span>
+          {% endif %}
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;">
+            {{ address.first_name }} {{ address.last_name }}
+          </div>
+          <div class="text-ink-soft" style="font-size: 0.95rem; margin-top: 0.35rem; line-height: 1.5;">
+            {{ address.street }}<br>
+            {{ address.city }}, {{ address.province_code }} {{ address.zip }}<br>
+            {{ address.country }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

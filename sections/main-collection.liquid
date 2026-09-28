@@ -1,0 +1,59 @@
+<section style="padding: 4.5rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container">
+    <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem;">
+      <span class="pill pill-teal" style="margin-bottom: 0.75rem;">Edition Collection</span>
+      <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; margin-bottom: 0.75rem;">
+        {{ collection.title }}
+      </h1>
+      {% if collection.description != blank %}
+        <p class="text-ink-soft" style="font-size: 1.1rem; line-height: 1.6;">
+          {{ collection.description }}
+        </p>
+      {% endif %}
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      {% for product in collection.products %}
+        <div class="brand-card">
+          <div class="brand-card-img-wrap">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}">
+            {% else %}
+              <img src="{{ 'box_hero.webp' | asset_url }}" alt="{{ product.title | escape }}">
+            {% endif %}
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">
+              {{ product.type | default: "Box Edition" }}
+            </span>
+          </div>
+          <div class="brand-card-body">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.25rem; flex: 1;">
+              {{ product.description | strip_html | truncate: 120 }}
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px dashed rgba(0,23,79,0.15); padding-top: 1rem; margin-top: auto;">
+              <div style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: var(--color-ink);">
+                {{ product.price | money }}
+              </div>
+              <a href="{{ product.url }}" class="btn btn-coral btn-sm">
+                Get The Box
+              </a>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <p class="text-ink-soft">No products found in this collection.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": []
+}
+{% endschema %}

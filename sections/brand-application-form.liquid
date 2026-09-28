@@ -1,0 +1,108 @@
+<section id="apply" style="padding: 5rem 0; border-bottom: 2px solid var(--color-ink); background-color: var(--color-cream);">
+  <div class="container-narrow">
+    <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: clamp(1.5rem, 4vw, 3rem); box-shadow: var(--shadow-pop-lg);">
+      
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="pill pill-coral" style="margin-bottom: 0.75rem;">Join An Upcoming Box</span>
+        <h2 style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; margin-bottom: 0.75rem;">
+          Brand Partner Application
+        </h2>
+        <p class="text-ink-soft" style="font-size: 1rem; max-width: 540px; margin: 0 auto;">
+          Applying does not commit you — it lets our curation team learn about your business and see if you are a great fit for the next seasonal drop.
+        </p>
+      </div>
+
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <div style="background-color: var(--color-teal-light); border: 2px solid var(--color-ink); border-radius: var(--radius-lg); padding: 2rem; text-align: center; box-shadow: var(--shadow-pop-sm);">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              {% render 'icon-check' %}
+            </div>
+            <h3 class="font-display" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Application Received!</h3>
+            <p class="text-ink-soft">Thank you for sharing your story. Our regional curation team will review your application and be in touch within 3 business days.</p>
+          </div>
+        {% else %}
+          {% if form.errors %}
+            <div style="background-color: var(--color-coral-light); border: 2px solid var(--color-ink); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 700; color: var(--color-coral-dark);">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <input type="hidden" name="contact[Form Type]" value="Brand Partner Application">
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="form-label">Brand / Business Name *</label>
+              <input type="text" name="contact[Brand Name]" class="form-input" placeholder="e.g. Star City Roasters" required>
+            </div>
+            <div>
+              <label class="form-label">Your Name *</label>
+              <input type="text" name="contact[Contact Name]" class="form-input" placeholder="e.g. Alex Morgan" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="contact[email]" class="form-input" placeholder="alex@brand.com" required>
+            </div>
+            <div>
+              <label class="form-label">Website or Instagram</label>
+              <input type="text" name="contact[Website]" class="form-input" placeholder="https://instagram.com/mybrand">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="form-label">City & State / Region *</label>
+              <input type="text" name="contact[City]" class="form-input" placeholder="e.g. Roanoke, VA" required>
+            </div>
+            <div>
+              <label class="form-label">Category *</label>
+              <select name="contact[Category]" class="form-select" style="font-family: var(--font-display); font-weight: 700;">
+                <option value="Maker">Maker & Crafts</option>
+                <option value="Cafe">Café & Bakery</option>
+                <option value="Coffee">Coffee Roaster</option>
+                <option value="Beauty">Beauty & Wellness</option>
+                <option value="Boutique">Boutique & Gifts</option>
+                <option value="Pantry">Pantry & Specialty Food</option>
+                <option value="Other">Other Specialty</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <label class="form-label">Placement Tier Interest</label>
+            <select name="contact[Tier]" class="form-select" style="font-family: var(--font-display); font-weight: 700;">
+              <option value="Standard">Standard Feature (1 of 6 featured brands inside)</option>
+              <option value="Cover">Cover Brand (Featured spotlight item on the box lid)</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.75rem;">
+            <label class="form-label">Tell us about your brand and what you'd love to include *</label>
+            <textarea name="contact[body]" rows="4" class="form-textarea" placeholder="Describe your origin story, best-selling product, and any sample ideas..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-coral btn-lg" style="width: 100%;">
+            <span>Send Brand Application</span>
+            {% render 'icon-arrow-right' %}
+          </button>
+        {% endif %}
+      {% endform %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Application Form",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Brand Application Form"
+    }
+  ]
+}
+{% endschema %}

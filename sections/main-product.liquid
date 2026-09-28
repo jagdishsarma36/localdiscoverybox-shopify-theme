@@ -1,0 +1,123 @@
+<section class="product-page-section" style="padding: 4rem 0 5rem;">
+  <div class="container">
+    <div style="max-width: 650px; margin-bottom: 2.5rem;">
+      <span class="pill pill-coral" style="margin-bottom: 0.75rem;">Single Box or Subscription</span>
+      <h1 style="font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; margin-bottom: 0.75rem;">
+        {{ product.title | default: "The Local Discovery Box" }}
+      </h1>
+      <p class="text-ink-soft" style="font-size: 1.15rem; line-height: 1.6;">
+        One box, six standout local brands, endless discovery. A limited seasonal run — grab yours before it's gone.
+      </p>
+    </div>
+
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    {% assign base_price = current_variant.price | default: 5900 %}
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: start;">
+      
+      <!-- Left Column: Form & Purchase Options -->
+      <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-pop-lg);">
+        
+        <form action="/cart/add" method="post" enctype="multipart/form-data" data-main-product-form data-base-price="{{ base_price }}" data-ajax-cart-form>
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          
+          <h2 class="font-display" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">
+            1. Select Region
+          </h2>
+          <div style="margin-bottom: 1.75rem;">
+            <label class="form-label">Which region's edition do you want?</label>
+            <select name="properties[Region]" class="form-select" style="font-family: var(--font-display); font-weight: 700; cursor: pointer;">
+              <option value="Southwest Virginia" selected>Southwest Virginia (Now Available)</option>
+              <option value="Rotating Regions">Rotating Regions (Surprise US Drop)</option>
+              <option value="Blue Ridge NC">Blue Ridge, NC (Pre-order / Waitlist)</option>
+            </select>
+            <span style="font-size: 0.8rem; color: var(--color-ink-soft); display: block; margin-top: 0.35rem;">
+              Ships with curated goods from that specific regional community.
+            </span>
+          </div>
+
+          <h2 class="font-display" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">
+            2. Choose Purchase Option
+          </h2>
+
+          <!-- Shopify Subscription Selling Plans Widget -->
+          {% render 'subscription-selector', product: product %}
+
+          <h2 class="font-display" style="font-size: 1.35rem; font-weight: 800; margin: 1.75rem 0 1rem;">
+            3. Quantity
+          </h2>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+            <div style="display: inline-flex; align-items: center; border: 2px solid var(--color-ink); border-radius: var(--radius-md); background-color: var(--color-cream); box-shadow: var(--shadow-pop-sm);">
+              <button type="button" data-qty-minus style="width: 44px; height: 44px; background: none; border: none; font-size: 1.25rem; font-weight: 800; cursor: pointer; color: var(--color-ink);">-</button>
+              <input type="number" name="quantity" value="1" min="1" max="5" data-qty-input readonly style="width: 44px; text-align: center; border: none; background: transparent; font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--color-ink); outline: none;">
+              <button type="button" data-qty-plus style="width: 44px; height: 44px; background: none; border: none; font-size: 1.25rem; font-weight: 800; cursor: pointer; color: var(--color-ink);">+</button>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--color-ink-soft);">Buying as gifts? Up to 5 boxes per order.</span>
+          </div>
+
+          <!-- Submit CTA -->
+          <button type="submit" class="btn btn-coral btn-lg" data-submit-button style="width: 100%; margin-bottom: 1rem;">
+            <span>Add to Cart & Checkout</span>
+            {% render 'icon-arrow-right' %}
+          </button>
+
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.8rem; color: var(--color-ink-soft);">
+            <span>🔒 Secure checkout powered by Shopify & Shopify Subscriptions</span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Order Summary Card -->
+      <aside style="background-color: var(--color-sun-light); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-pop-lg); position: sticky; top: 6rem;">
+        <h2 class="font-display" style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.25rem;">
+          Order Summary
+        </h2>
+
+        <div style="border-radius: var(--radius-lg); border: 2px solid var(--color-ink); overflow: hidden; background-color: var(--color-paper); margin-bottom: 1.25rem;">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" style="aspect-ratio: 16/10; width: 100%; object-fit: cover;">
+          {% else %}
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="The Local Discovery Box" style="aspect-ratio: 16/10; width: 100%; object-fit: cover;">
+          {% endif %}
+        </div>
+
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; margin-bottom: 0.25rem;">
+          {{ product.title | default: "Southwest Virginia Edition" }}
+        </div>
+        <div style="font-size: 0.9rem; color: var(--color-ink-soft); margin-bottom: 1.5rem;">
+          Current Season · 6 Curated Brands Inside
+        </div>
+
+        <div style="border-top: 2px dashed rgba(0, 23, 79, 0.2); padding-top: 1.25rem; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; font-weight: 600;">
+          <div style="display: flex; justify-content: space-between;">
+            <span data-summary-qty>1 box</span>
+            <span data-calculated-total>{{ base_price | money }}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; color: var(--color-teal-dark);">
+            <span>Standard US Shipping</span>
+            <span>FREE</span>
+          </div>
+        </div>
+
+        <div style="border-top: 2px solid var(--color-ink); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;">
+          <span>Total</span>
+          <span data-calculated-total>{{ base_price | money }}</span>
+        </div>
+
+        <div style="margin-top: 1.5rem; background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem; font-weight: 600; display: flex; flex-direction: column; gap: 0.4rem;">
+          <div>✓ Guaranteed delivery of limited batch</div>
+          <div>✓ Full booklet and QR codes included</div>
+          <div>✓ Cancel subscription anytime in 1 click</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": []
+}
+{% endschema %}

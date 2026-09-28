@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "hero": {
+      "type": "regions-hero",
+      "settings": {}
+    },
+    "list": {
+      "type": "regions-list",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "list"
+  ]
+}

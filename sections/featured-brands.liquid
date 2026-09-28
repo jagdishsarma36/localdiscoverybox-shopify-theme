@@ -1,0 +1,283 @@
+<section id="the-box" style="padding: 5rem 0; border-bottom: 2px solid var(--color-ink); background-color: var(--color-cream);">
+  <div class="container">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+      <span class="pill pill-coral" style="margin-bottom: 0.75rem;">This Edition's Lineup</span>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem;">
+        Six Local Brands. One Box.
+      </h2>
+      <p class="text-ink-soft" style="font-size: 1.1rem;">
+        Every season we curate six independent, standout local businesses from across the region. Here is what is inside the current Southwest Virginia edition.
+      </p>
+    </div>
+
+    <!-- Brands Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% assign rot_index = forloop.index | modulo: 4 %}
+          <article class="brand-card {% if rot_index == 1 %}rot-neg-1{% elsif rot_index == 2 %}rot-pos-1{% elsif rot_index == 3 %}rot-neg-2{% else %}rot-pos-2{% endif %}" {{ block.shopify_attributes }}>
+            <div class="brand-card-img-wrap">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.brand_name | escape }}" loading="lazy">
+              {% else %}
+                <img src="{{ 'box_hero.webp' | asset_url }}" alt="{{ block.settings.brand_name | escape }}" loading="lazy">
+              {% endif %}
+              <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem; text-transform: uppercase;">
+                {{ block.settings.category | default: "Maker" }}
+              </span>
+              {% if block.settings.featured %}
+                <span class="pill pill-coral" style="position: absolute; top: 0.75rem; right: 0.75rem;">
+                  ★ Cover Brand
+                </span>
+              {% endif %}
+            </div>
+            <div class="brand-card-body">
+              <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+                {% render 'icon-map-pin' %}
+                <span>{{ block.settings.location | default: "Roanoke, VA" }}</span>
+              </div>
+              <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">
+                {{ block.settings.brand_name }}
+              </h3>
+              <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+                {{ block.settings.description }}
+              </p>
+              <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span style="color: var(--color-teal-dark);">📦 Inside:</span>
+                  <span>{{ block.settings.item_included }}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span style="color: var(--color-coral);">🏷️ Perk:</span>
+                  <span>{{ block.settings.exclusive_offer }}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <!-- Default Pre-populated 6 Brands matching Live Site -->
+        <!-- Brand 1: Blacksburg Bagels & Café -->
+        <article class="brand-card rot-neg-1">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Blacksburg Bagels">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Café & Bakery</span>
+            <span class="pill pill-coral" style="position: absolute; top: 0.75rem; right: 0.75rem;">★ Cover Brand</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Blacksburg, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Blacksburg Artisan Bakes</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Crafted in small batches with local Appalachian grains. Famous across Montgomery County for traditional slow fermentation and distinct taste.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> Heritage Cinnamon Spice Granola Snack Pack</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> $10 off your next bakery order</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 2: Roanoke Roasters -->
+        <article class="brand-card rot-pos-1">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Star City Roasters">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Coffee Roaster</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Roanoke, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Star City Single-Origin Coffee</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Locally roasted micro-lot coffee beans ethically sourced and freshly roasted in the heart of Virginia's Blue Ridge mountains.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> Fresh Roast 4oz Whole Bean Discovery Pouch</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> 20% off any subscription order</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 3: Blue Ridge Botanicals -->
+        <article class="brand-card rot-neg-2">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Blue Ridge Botanicals">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Beauty & Wellness</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Floyd, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Floyd Mountain Apothecary</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Handmade skincare and botanical soaps crafted with wildcrafted herbs and pure plant extracts harvested from Southwestern Virginia hills.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> Mountain Lavender & Honey Artisan Soap Bar</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> Free botanical lip balm with your order</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 4: Appalachian Clayworks -->
+        <article class="brand-card rot-pos-2">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Appalachian Clayworks">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Maker</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Abingdon, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Ridge Clayworks Studio</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Wheel-thrown functional pottery designed for daily rituals. Stamped with custom regional symbols inspired by Southwestern Virginia geology.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> Hand-stamped Ceramic Coffee Mug Coaster</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> $15 credit towards any stoneware mug</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 5: Holston Valley Honey -->
+        <article class="brand-card rot-neg-1">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Holston Valley Honey">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Artisan Pantry</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Bristol, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Holston Wildflower Apiaries</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Raw, unfiltered seasonal honey sourced directly from protected mountain meadows along the Virginia-Tennessee border line.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> 3oz Sourwood Mountain Blossom Honey Jar</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> Free dipper with jar purchase</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 6: Cardinal Goods Co. -->
+        <article class="brand-card rot-pos-1">
+          <div class="brand-card-img-wrap">
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="Cardinal Goods Co.">
+            <span class="pill pill-sun" style="position: absolute; top: 0.75rem; left: 0.75rem;">Boutique & Gifts</span>
+          </div>
+          <div class="brand-card-body">
+            <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--color-coral-dark); margin-bottom: 0.4rem;">
+              {% render 'icon-map-pin' %}
+              <span>Christiansburg, VA</span>
+            </div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem;">Old Dominion Goods</h3>
+            <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; flex: 1;">
+              Vintage-inspired flags, screen-printed bandanas, and outdoor goods designed to celebrate the spirit and history of the Commonwealth.
+            </p>
+            <div style="border-top: 2px dashed rgba(0, 23, 79, 0.15); padding-top: 0.85rem; margin-top: auto; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;">
+              <div><span style="color: var(--color-teal-dark);">📦 Inside:</span> Screenprinted Blue Ridge Mountain Bandana</div>
+              <div><span style="color: var(--color-coral);">🏷️ Perk:</span> 25% off sitewide</div>
+            </div>
+          </div>
+        </article>
+      {% endif %}
+    </div>
+
+    <!-- Bottom Actions -->
+    <div style="text-align: center; margin-top: 3.5rem;">
+      <a href="/products/the-local-discovery-box" class="btn btn-coral btn-lg">
+        <span>Claim your box before it sells out</span>
+        {% render 'icon-arrow-right' %}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Brands",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Six Local Brands. One Box."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every season we curate six independent, standout local businesses from across the region."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Featured Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "Local Artisan Co."
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "Maker"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Roanoke, VA"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Photo"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Story & Description",
+          "default": "Handcrafted in small batches with locally sourced ingredients."
+        },
+        {
+          "type": "text",
+          "id": "item_included",
+          "label": "Included Item",
+          "default": "Specialty Discovery Sample"
+        },
+        {
+          "type": "text",
+          "id": "exclusive_offer",
+          "label": "Exclusive Offer",
+          "default": "$10 voucher inside"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Cover Brand Badge",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Brands"
+    }
+  ]
+}
+{% endschema %}

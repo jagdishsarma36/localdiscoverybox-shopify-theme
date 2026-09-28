@@ -1,0 +1,21 @@
+{
+  "current": {
+    "color_ink": "#00174F",
+    "color_ink_soft": "#5A677D",
+    "color_cream": "#FFFDF8",
+    "color_paper": "#FFFFFF",
+    "color_coral": "#FF6B5A",
+    "color_coral_dark": "#E0402B",
+    "color_teal": "#7AE2CE",
+    "color_sun": "#FFD166",
+    "color_berry": "#795290",
+    "logo_width": 220,
+    "cart_type": "drawer",
+    "enable_free_shipping_bar": true,
+    "free_shipping_threshold": 50,
+    "default_region": "Southwest Virginia",
+    "social_instagram_link": "https://instagram.com",
+    "social_facebook_link": "https://facebook.com",
+    "social_tiktok_link": "https://tiktok.com"
+  }
+}

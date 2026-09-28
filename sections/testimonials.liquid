@@ -1,0 +1,75 @@
+<section style="padding: 5rem 0; border-bottom: 2px solid var(--color-ink); background-color: var(--color-cream);">
+  <div class="container">
+    <div style="text-align: center; max-width: 600px; margin: 0 auto 3.5rem;">
+      <span class="pill pill-sun" style="margin-bottom: 0.75rem;">Community Love</span>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem;">
+        What Subscribers Say
+      </h2>
+      <p class="text-ink-soft" style="font-size: 1.1rem;">
+        Hear from neighbors and foodies across Virginia who unboxed their first edition.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <!-- Review 1 -->
+      <div style="border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-paper); padding: 1.75rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;" class="rot-neg-1">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="pill pill-teal" style="font-size: 0.75rem;">Roanoke, VA</span>
+          <div style="color: var(--color-coral); display: flex; gap: 2px;">
+            {% for i in (1..5) %}{% render 'icon-star' %}{% endfor %}
+          </div>
+        </div>
+        <p style="font-style: italic; font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem; flex: 1;">
+          "I’ve lived in SWVA for over eight years and had no idea about three of these makers. The honey was incredible, and the pottery coaster is already on my desk."
+        </p>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 1rem;">
+          — Sarah M. <span style="font-weight: 500; font-size: 0.85rem; color: var(--color-ink-soft);">Season Pass Subscriber</span>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div style="border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-sun-light); padding: 1.75rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;" class="rot-pos-1">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="pill pill-sun" style="font-size: 0.75rem;">Blacksburg, VA</span>
+          <div style="color: var(--color-coral); display: flex; gap: 2px;">
+            {% for i in (1..5) %}{% render 'icon-star' %}{% endfor %}
+          </div>
+        </div>
+        <p style="font-style: italic; font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem; flex: 1;">
+          "Bought one as a housewarming gift for my sister who just moved to town. She was blown away by the quality. She used the QR code to re-order the coffee beans immediately."
+        </p>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 1rem;">
+          — Marcus T. <span style="font-weight: 500; font-size: 0.85rem; color: var(--color-ink-soft);">Gift Buyer</span>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div style="border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-teal-light); padding: 1.75rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;" class="rot-neg-2">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="pill pill-coral" style="font-size: 0.75rem;">Abingdon, VA</span>
+          <div style="color: var(--color-coral); display: flex; gap: 2px;">
+            {% for i in (1..5) %}{% render 'icon-star' %}{% endfor %}
+          </div>
+        </div>
+        <p style="font-style: italic; font-size: 1rem; line-height: 1.6; margin-bottom: 1.25rem; flex: 1;">
+          "The unboxing experience is so fun. Reading the maker guide felt like taking a mini road trip through the region. Can't wait for next season's box!"
+        </p>
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: 1rem;">
+          — Elena R. <span style="font-weight: 500; font-size: 0.85rem; color: var(--color-ink-soft);">Year of Discovery Member</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

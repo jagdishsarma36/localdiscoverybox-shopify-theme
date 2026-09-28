@@ -1,0 +1,105 @@
+<section style="padding: 4.5rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container-narrow">
+    <div style="margin-bottom: 2.5rem; text-align: center;">
+      <span class="pill pill-coral" style="margin-bottom: 0.75rem;">Your Order</span>
+      <h1 style="font-size: 2.5rem; font-weight: 800;">Your Box Cart</h1>
+    </div>
+
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post">
+        <!-- Free Shipping Progress Bar -->
+        {% if settings.enable_free_shipping_bar %}
+          <div class="free-shipping-progress" data-free-shipping-container data-threshold="{{ settings.free_shipping_threshold | default: 50 }}" style="border: 2px solid var(--color-ink); border-radius: var(--radius-lg); margin-bottom: 2rem; box-shadow: var(--shadow-pop-sm);">
+            <div data-free-shipping-text>
+              {% assign threshold_cents = settings.free_shipping_threshold | default: 50 | times: 100 %}
+              {% if cart.total_price >= threshold_cents %}
+                <strong>You unlocked FREE shipping!</strong> 🎉
+              {% else %}
+                {% assign remaining_cents = threshold_cents | minus: cart.total_price %}
+                Add <strong>{{ remaining_cents | money }}</strong> more for <strong>FREE shipping!</strong>
+              {% endif %}
+            </div>
+            <div class="free-shipping-bar">
+              {% assign pct = cart.total_price | times: 100.0 | divided_by: threshold_cents | at_most: 100 %}
+              <div class="free-shipping-bar-fill" data-free-shipping-fill style="width: {{ pct }}%;"></div>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Items Table -->
+        <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-pop); margin-bottom: 2rem;">
+          {% for item in cart.items %}
+            <div style="display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: center; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px dashed rgba(0, 23, 79, 0.2);">
+              <div style="width: 80px; height: 80px; border-radius: var(--radius-md); border: 2px solid var(--color-ink); overflow: hidden;">
+                {% if item.image %}
+                  <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
+                  <img src="{{ 'box_hero.webp' | asset_url }}" alt="{{ item.title | escape }}" style="width: 100%; height: 100%; object-fit: cover;">
+                {% endif %}
+              </div>
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem;">{{ item.product.title }}</h3>
+                {% if item.selling_plan_allocation %}
+                  <span class="pill pill-coral" style="font-size: 0.75rem; margin-bottom: 0.25rem;">★ {{ item.selling_plan_allocation.selling_plan.name }}</span>
+                {% endif %}
+                {% if item.properties['Region'] != blank %}
+                  <div class="text-ink-soft" style="font-size: 0.85rem;">Region: <strong>{{ item.properties['Region'] }}</strong></div>
+                {% endif %}
+                <div style="margin-top: 0.75rem;">
+                  <a href="/cart/change?line={{ forloop.index }}&quantity=0" style="font-size: 0.8rem; font-weight: 700; color: var(--color-coral-dark);">Remove</a>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">
+                  {{ item.final_line_price | money }}
+                </div>
+                <div class="quantity-controls">
+                  <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="qty-btn">-</a>
+                  <span class="qty-num">{{ item.quantity }}</span>
+                  <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="qty-btn">+</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <!-- Subtotal & Checkout -->
+          <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; padding-top: 1rem;">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="text-ink-soft" style="font-size: 0.85rem; text-align: right; margin-top: 0.25rem;">Taxes and shipping calculated at checkout.</p>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+          <a href="/#the-box" class="btn btn-ghost btn-lg" style="border: 2px solid var(--color-ink);">Continue Shopping</a>
+          <button type="submit" name="checkout" class="btn btn-coral btn-lg">
+            <span>Proceed to Checkout</span>
+            {% render 'icon-arrow-right' %}
+          </button>
+        </div>
+      </form>
+    {% else %}
+      <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 4rem 2rem; text-align: center; box-shadow: var(--shadow-pop);">
+        <div style="width: 72px; height: 72px; border-radius: 50%; background-color: var(--color-sun); border: 2px solid var(--color-ink); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+          {% render 'icon-cart' %}
+        </div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Your Cart is Empty</h2>
+        <p class="text-ink-soft" style="font-size: 1.05rem; max-width: 480px; margin: 0 auto 2rem;">
+          Explore the current seasonal edition and discover six independent local brands from your state.
+        </p>
+        <a href="/products/the-local-discovery-box" class="btn btn-coral btn-lg">
+          <span>Discover This Edition</span>
+          {% render 'icon-arrow-right' %}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "settings": []
+}
+{% endschema %}

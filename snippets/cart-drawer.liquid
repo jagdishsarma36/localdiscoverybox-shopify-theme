@@ -1,0 +1,88 @@
+<div class="cart-drawer-overlay" data-cart-drawer-overlay></div>
+
+<div class="cart-drawer" data-cart-drawer>
+  <div class="cart-drawer-header">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      {% render 'icon-cart' %}
+      <h3 class="font-display" style="font-size: 1.35rem; font-weight: 800; margin: 0;">Your Box Cart</h3>
+    </div>
+    <button type="button" class="cart-drawer-close" data-cart-drawer-close aria-label="Close cart">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  {% if settings.enable_free_shipping_bar %}
+    <div class="free-shipping-progress" data-free-shipping-container data-threshold="{{ settings.free_shipping_threshold | default: 50 }}">
+      <div data-free-shipping-text>
+        {% assign threshold_cents = settings.free_shipping_threshold | default: 50 | times: 100 %}
+        {% if cart.total_price >= threshold_cents %}
+          <strong>You unlocked FREE shipping!</strong> 🎉
+        {% else %}
+          {% assign remaining_cents = threshold_cents | minus: cart.total_price %}
+          Add <strong>{{ remaining_cents | money }}</strong> more for <strong>FREE shipping!</strong>
+        {% endif %}
+      </div>
+      <div class="free-shipping-bar">
+        {% assign pct = cart.total_price | times: 100.0 | divided_by: threshold_cents | at_most: 100 %}
+        <div class="free-shipping-bar-fill" data-free-shipping-fill style="width: {{ pct }}%;"></div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="cart-drawer-items" data-cart-drawer-items>
+    {% for item in cart.items %}
+      <div class="cart-item" data-key="{{ item.key }}">
+        <div class="cart-item-image">
+          {% if item.image %}
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}">
+          {% else %}
+            <img src="{{ 'box_hero.webp' | asset_url }}" alt="{{ item.title | escape }}">
+          {% endif %}
+        </div>
+        <div class="cart-item-details">
+          <h4 class="cart-item-title">{{ item.product.title }}</h4>
+          {% if item.selling_plan_allocation %}
+            <span class="cart-item-selling-plan">★ {{ item.selling_plan_allocation.selling_plan.name }}</span>
+          {% endif %}
+          {% if item.properties['Region'] != blank %}
+            <div class="cart-item-property">Region: <strong>{{ item.properties['Region'] }}</strong></div>
+          {% endif %}
+          <div class="cart-item-bottom">
+            <div class="quantity-controls">
+              <button type="button" class="qty-btn" onclick="changeItemQty('{{ item.key }}', {{ item.quantity | minus: 1 }})">-</button>
+              <span class="qty-num">{{ item.quantity }}</span>
+              <button type="button" class="qty-btn" onclick="changeItemQty('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+            </div>
+            <div class="cart-item-price">{{ item.final_line_price | money }}</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div data-cart-empty-state style="padding: 3rem 1.5rem; text-align: center; {% if cart.item_count > 0 %}display: none;{% endif %}">
+    <div style="width: 64px; height: 64px; border-radius: 50%; background-color: var(--color-sun); border: 2px solid var(--color-ink); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+      {% render 'icon-cart' %}
+    </div>
+    <h4 class="font-display text-2xl font-extrabold" style="margin-bottom: 0.5rem;">Your cart is empty</h4>
+    <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Discover six local brands from your state in one beautiful seasonal box.</p>
+    <a href="/#the-box" class="btn btn-coral btn-md" data-cart-drawer-close>Explore This Edition</a>
+  </div>
+
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+    </div>
+    <p class="text-ink-soft" style="font-size: 0.8rem; margin-bottom: 1rem; text-align: center;">Taxes and shipping calculated at checkout.</p>
+    <form action="/checkout" method="post">
+      <button type="submit" class="btn btn-coral btn-lg" data-cart-checkout-btn style="width: 100%;" {% if cart.item_count == 0 %}disabled{% endif %}>
+        <span>Proceed to Checkout</span>
+        {% render 'icon-arrow-right' %}
+      </button>
+    </form>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.75rem; color: var(--color-ink-soft); margin-top: 0.75rem;">
+      <span>🔒 Secure Checkout Powered by Shopify</span>
+    </div>
+  </div>
+</div>

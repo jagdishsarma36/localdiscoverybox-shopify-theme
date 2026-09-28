@@ -1,0 +1,19 @@
+<section style="padding: 4.5rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container-narrow">
+    <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: clamp(1.5rem, 4vw, 3.5rem); box-shadow: var(--shadow-pop-lg);">
+      <h1 style="font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1.5rem;">
+        {{ page.title }}
+      </h1>
+      <div class="page-content" style="font-size: 1.05rem; line-height: 1.7; color: var(--color-ink-soft);">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Page",
+  "settings": []
+}
+{% endschema %}

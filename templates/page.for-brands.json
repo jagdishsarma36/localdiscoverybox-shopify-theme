@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "hero": {
+      "type": "brand-hero",
+      "settings": {}
+    },
+    "metrics": {
+      "type": "brand-metrics",
+      "settings": {}
+    },
+    "steps": {
+      "type": "brand-steps",
+      "settings": {}
+    },
+    "types": {
+      "type": "brand-business-types",
+      "settings": {}
+    },
+    "form": {
+      "type": "brand-application-form",
+      "settings": {}
+    },
+    "faq": {
+      "type": "brand-faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "metrics",
+    "steps",
+    "types",
+    "form",
+    "faq"
+  ]
+}

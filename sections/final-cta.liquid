@@ -1,0 +1,40 @@
+<section style="padding: 5rem 0; background-color: var(--color-sun); border-bottom: 2px solid var(--color-ink); position: relative; overflow: hidden;">
+  <div class="container" style="position: relative; z-index: 2;">
+    <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 3.5rem 2rem; box-shadow: var(--shadow-pop-lg); max-width: 900px; margin: 0 auto; text-align: center; position: relative;">
+      
+      <span class="pill pill-coral" style="margin-bottom: 1rem;">Limited First Run</span>
+      <h2 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem;">
+        Ready to discover your state?
+      </h2>
+      <p class="text-ink-soft" style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
+        Only 100 boxes are crafted for each seasonal edition. Grab your box or subscribe today to guarantee your regional drop.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <a href="/products/the-local-discovery-box" class="btn btn-coral btn-lg">
+          <span>Get this season's box ($59)</span>
+          {% render 'icon-arrow-right' %}
+        </a>
+        <a href="/pages/subscribe" class="btn btn-teal btn-lg">
+          <span>View subscription plans</span>
+        </a>
+      </div>
+
+      <p class="text-ink-soft" style="font-size: 0.85rem; font-weight: 600; margin-top: 1.5rem;">
+        📦 Free shipping across the US · Cancel or pause your subscription anytime
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Final CTA"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{% comment %}
+  Shopify Subscription App Selling Plans Selector
+  Supports native Shopify Selling Plan Groups (Shopify Subscriptions, ReCharge, Bold, Seal, etc.)
+{% endcomment %}
+
+<div class="subscription-widget" data-subscription-widget>
+  <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; margin-bottom: 0.75rem;">
+    Purchase Options:
+  </div>
+
+  <input type="hidden" name="selling_plan" value="" id="SelectedSellingPlan">
+
+  <!-- One-Time Purchase Option -->
+  <label class="plan-option-label selected">
+    <div style="display: flex; align-items: center;">
+      <input type="radio" name="purchase_option" value="one_time" class="plan-option-radio" checked>
+      <div>
+        <div style="font-family: var(--font-display); font-weight: 700;">One-Time Box</div>
+        <div style="font-size: 0.8rem; color: var(--color-ink-soft);">This season's edition · No recurring commitment</div>
+      </div>
+    </div>
+    <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;">
+      {{ product.price | money }}
+    </div>
+  </label>
+
+  {% if product.selling_plan_groups.size > 0 %}
+    {% for group in product.selling_plan_groups %}
+      {% for plan in group.selling_plans %}
+        <label class="plan-option-label">
+          <div style="display: flex; align-items: center;">
+            <input type="radio" name="purchase_option" value="{{ plan.id }}" class="plan-option-radio" data-plan-price="{{ plan.price_adjustments[0].value | default: product.price }}">
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
+                {{ plan.name }}
+                <span class="pill pill-coral" style="font-size: 0.7rem; padding: 0.15rem 0.45rem;">Save 15%</span>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--color-ink-soft);">
+                {{ plan.description | default: "Auto-renews each season · Pause or cancel anytime" }}
+              </div>
+            </div>
+          </div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--color-coral-dark);">
+            {% if plan.price_adjustments.size > 0 %}
+              {{ product.price | times: 0.85 | money }}
+            {% else %}
+              {{ product.price | money }}
+            {% endif %}
+          </div>
+        </label>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    <!-- Demo / Standard Fallback if Shopify Subscriptions App is yet to be connected -->
+    <label class="plan-option-label">
+      <div style="display: flex; align-items: center;">
+        <input type="radio" name="purchase_option" value="quarterly_subscription_plan" class="plan-option-radio" data-plan-price="{{ product.price | times: 0.85 }}">
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
+            Season Pass Subscription
+            <span class="pill pill-coral" style="font-size: 0.7rem; padding: 0.15rem 0.45rem;">Best Value</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--color-ink-soft);">Delivered every 3 months · Cancel anytime</div>
+        </div>
+      </div>
+      <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--color-coral-dark);">
+        {{ product.price | times: 0.85 | money }}
+      </div>
+    </label>
+  {% endif %}
+</div>

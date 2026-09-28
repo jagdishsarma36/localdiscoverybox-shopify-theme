@@ -1,0 +1,104 @@
+<section style="padding: 4rem 0 6rem; background-color: var(--color-cream); border-bottom: 2px solid var(--color-ink);">
+  <div class="container">
+    
+    <!-- Available Now Heading -->
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+      <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink);"></span>
+      <h2 style="font-size: 1.75rem; font-weight: 800;">Available Now</h2>
+    </div>
+
+    <!-- Available Now Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+      
+      <!-- Southwest Virginia Region Card -->
+      <div class="brand-card" data-region-status="current" style="background-color: var(--color-paper);">
+        <div class="brand-card-img-wrap" style="aspect-ratio: 16/9;">
+          <img src="{{ 'box_hero.webp' | asset_url }}" alt="Southwest Virginia Edition">
+          <span class="pill pill-teal" style="position: absolute; top: 0.75rem; left: 0.75rem;">
+            ● Live Now
+          </span>
+          <span class="pill pill-sun" style="position: absolute; top: 0.75rem; right: 0.75rem;">
+            SW Virginia
+          </span>
+        </div>
+        <div class="brand-card-body">
+          <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.35rem;">Southwest Virginia</h3>
+          <p class="text-coral-dark" style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">
+            "Appalachian Harvest & Mountain Craft"
+          </p>
+          <p class="text-ink-soft" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.25rem;">
+            Covering Roanoke, Blacksburg, Christiansburg, Floyd, Abingdon, and Bristol. Featuring six exceptional independent makers.
+          </p>
+          <div style="display: flex; gap: 0.75rem; margin-top: auto;">
+            <a href="/products/the-local-discovery-box" class="btn btn-coral btn-md" style="flex: 1;">
+              Get This Box
+            </a>
+            <a href="/pages/subscribe" class="btn btn-teal btn-md">
+              Subscribe
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coming Soon Heading -->
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem;">
+      <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: var(--color-sun); border: 2px solid var(--color-ink);"></span>
+      <h2 style="font-size: 1.75rem; font-weight: 800;">Upcoming Regional Drops</h2>
+    </div>
+
+    <!-- Upcoming Regions Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+      
+      {% assign upcoming_regions = "Blue Ridge NC|Summer 2027,Texas Hill Country TX|Fall 2027,Pacific Northwest WA/OR|Winter 2027,Hudson Valley NY|Spring 2028,Lowcountry SC|Summer 2028,Richmond & Central VA|Fall 2028,Northern Virginia & D.C.|Winter 2028" | split: "," %}
+      
+      {% for region_entry in upcoming_regions %}
+        {% assign parts = region_entry | split: "|" %}
+        {% assign name = parts[0] %}
+        {% assign date = parts[1] %}
+        
+        <div class="brand-card" data-region-status="upcoming" style="background-color: var(--color-paper); padding: 1.5rem; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+              <span class="pill pill-sun" style="font-size: 0.75rem;">Coming {{ date }}</span>
+              <span style="font-size: 1.25rem;">📍</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.35rem;">{{ name }}</h3>
+            <p class="text-ink-soft" style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">
+              Curating independent coffee roasters, farmstead goods, and handmade crafts from this vibrant region.
+            </p>
+          </div>
+          <button type="button" class="btn btn-ink btn-sm" onclick="openWaitlistModal('{{ name }}')" style="width: 100%;">
+            Join Waitlist
+          </button>
+        </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- Bottom Community Action -->
+    <div style="margin-top: 4rem; text-align: center; background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-pop);">
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Don't see your hometown listed yet?</h3>
+      <p class="text-ink-soft" style="font-size: 1rem; max-width: 500px; margin: 0 auto 1.5rem;">
+        Help us expand! Recommend an incredible maker, bakery, or roastery in your community.
+      </p>
+      <button type="button" class="btn btn-coral btn-md" onclick="openRecommendModal('Your State')">
+        Recommend a Local Brand
+      </button>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Regions List",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Regions List"
+    }
+  ]
+}
+{% endschema %}

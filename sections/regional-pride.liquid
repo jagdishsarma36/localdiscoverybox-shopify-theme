@@ -1,0 +1,75 @@
+<section style="padding: 5rem 0; border-bottom: 2px solid var(--color-ink); background-color: var(--color-cream); position: relative;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center;">
+      <!-- Left Content -->
+      <div>
+        <span class="pill pill-sun" style="margin-bottom: 0.75rem;">The Experience</span>
+        <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem;">
+          Discovery is a form of <span style="color: var(--color-berry);">regional pride.</span>
+        </h2>
+        <p class="text-ink-soft" style="font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          You already screenshot storefronts and keep a "places to try" list. The box arrives already vouched for — independent brands curated by locals, reading as insider knowledge rather than digital marketing.
+        </p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-weight: 600; font-size: 1rem;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); flex-shrink: 0; margin-top: 2px;">
+              {% render 'icon-check' %}
+            </span>
+            <span>Six regional brands to try at once — one small treat, not a chore.</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-weight: 600; font-size: 1rem;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); flex-shrink: 0; margin-top: 2px;">
+              {% render 'icon-check' %}
+            </span>
+            <span>Exclusive first-order offers & QR perks you won't find anywhere else.</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-weight: 600; font-size: 1rem;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); flex-shrink: 0; margin-top: 2px;">
+              {% render 'icon-check' %}
+            </span>
+            <span>Perfect gift for newcomers, locals, and homesick expats who love their home state.</span>
+          </li>
+        </ul>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/pages/subscribe" class="btn btn-coral btn-lg">
+            <span>Join Season Pass</span>
+            {% render 'icon-arrow-right' %}
+          </a>
+          <a href="/pages/for-brands" class="btn btn-teal btn-lg">
+            <span>Are you a maker?</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Graphic / Mascot Card -->
+      <div style="position: relative; display: flex; justify-content: center;">
+        <div style="border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-sun); padding: 2.5rem 2rem; box-shadow: var(--shadow-pop-lg); width: 100%; max-width: 440px; text-align: center;">
+          <figure class="mascot-container" style="margin-bottom: 1.5rem;">
+            <img src="{{ 'lo_mascot.png' | asset_url }}" alt="Lo the Strawberry Mascot" style="height: 180px; width: auto; margin: 0 auto;">
+            <figcaption class="mascot-caption" style="font-size: 1rem; margin-top: 0.5rem;">Lo says: "Taste local, live happy!"</figcaption>
+          </figure>
+          <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-pop-sm);">
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; margin-bottom: 0.25rem;">
+              Support Your Neighbors
+            </div>
+            <p class="text-ink-soft" style="font-size: 0.9rem;">
+              Over 85% of dollars spent with local businesses stay within your community. Every box is an investment in regional vitality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Regional Pride",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Regional Pride"
+    }
+  ]
+}
+{% endschema %}

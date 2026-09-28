@@ -1,0 +1,242 @@
+<section style="padding: 4rem 0 6rem; background-color: var(--color-cream);">
+  <div class="container">
+    <!-- Top Hero Banner -->
+    <div style="text-align: center; max-width: 760px; margin: 0 auto 4rem;">
+      <span class="pill pill-coral" style="margin-bottom: 1rem;">
+        ★ Never Miss A Drop
+      </span>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem;">
+        Subscribe to the discovery.
+      </h1>
+      <p class="text-ink-soft" style="font-size: 1.2rem; line-height: 1.6;">
+        Choose your plan, pick your state or let us surprise you — a curated box of independent local brands lands on your doorstep every season.
+      </p>
+    </div>
+
+    <!-- Hidden field for default subscription variant -->
+    {% assign sub_product = all_products[settings.subscription_product] | default: product %}
+    {% assign sub_variant_id = sub_product.selected_or_first_available_variant.id %}
+    <input type="hidden" data-subscription-variant-id value="{{ sub_variant_id }}">
+
+    <!-- Group 1: Season Pass ($69 / quarter) -->
+    <div style="margin-bottom: 4rem;">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 2rem; font-weight: 800;">
+          Season Pass <span style="font-size: 1.2rem; color: var(--color-ink-soft); font-weight: 700;">· $69 / quarter</span>
+        </h2>
+        <p class="text-ink-soft" style="font-size: 1rem;">One curated box every season. Billed quarterly — pause or cancel anytime.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- Plan 1: Season Pass - One Region -->
+        <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;">
+          <span class="pill pill-teal" style="align-self: flex-start; margin-bottom: 1rem;">
+            {% render 'icon-map-pin' %}
+            <span>One Region</span>
+          </span>
+          <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">Season Pass</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Your chosen region, every single season.</p>
+          
+          <div style="display: flex; align-items: baseline; gap: 0.35rem; margin-bottom: 0.25rem;">
+            <span style="font-family: var(--font-display); font-size: 3rem; font-weight: 800;">$69</span>
+            <span style="font-family: var(--font-display); font-weight: 700; color: var(--color-ink-soft);">/ quarter</span>
+          </div>
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--color-ink-soft); margin-bottom: 1.5rem;">Billed quarterly — cancel anytime</p>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label class="form-label">Choose your region</label>
+            <select class="form-select" data-plan-region="season-local" style="font-family: var(--font-display); font-weight: 700;">
+              <option value="Southwest Virginia" selected>Southwest Virginia (Now Available)</option>
+              <option value="Blue Ridge NC">Blue Ridge, NC (Summer 2027)</option>
+              <option value="Texas Hill Country">Texas Hill Country, TX (Fall 2027)</option>
+              <option value="Pacific Northwest">Pacific Northwest (Winter 2027)</option>
+              <option value="Hudson Valley NY">Hudson Valley, NY (Spring 2028)</option>
+            </select>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; flex: 1;">
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>One curated box per season</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Exclusive subscriber-only brand vouchers</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>First dibs on your region's editions</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Pause, skip, or cancel anytime</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn btn-ink btn-lg" onclick="chooseSubscriptionPlan('season-local', 'Season Pass — One Region', 6900, 'Quarterly', 'local')" style="width: 100%;">
+            Choose One Region
+          </button>
+        </div>
+
+        <!-- Plan 2: Season Pass - Rotating Regions (Most Popular) -->
+        <div style="background-color: var(--color-sun); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column; position: relative;">
+          <span class="pill pill-coral" style="position: absolute; -top: 14px; left: 2rem; font-size: 0.8rem; font-weight: 800;">
+            ★ Most Popular
+          </span>
+
+          <span class="pill pill-berry" style="align-self: flex-start; margin-bottom: 1rem;">
+            {% render 'icon-sparkles' %}
+            <span>Rotating Regions</span>
+          </span>
+          <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">Season Pass</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">A different US region every season — surprise drop.</p>
+          
+          <div style="display: flex; align-items: baseline; gap: 0.35rem; margin-bottom: 0.25rem;">
+            <span style="font-family: var(--font-display); font-size: 3rem; font-weight: 800;">$69</span>
+            <span style="font-family: var(--font-display); font-weight: 700; color: var(--color-ink-soft);">/ quarter</span>
+          </div>
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--color-ink-soft); margin-bottom: 1.5rem;">Billed quarterly — cancel anytime</p>
+
+          <div style="margin-bottom: 1.5rem; background-color: rgba(255, 255, 255, 0.7); border: 2px solid var(--color-ink); border-radius: var(--radius-md); padding: 0.85rem; font-size: 0.85rem; font-weight: 600;">
+            Each season our team picks a standout US region — you'll be delighted by surprise indie makers every drop.
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; flex: 1;">
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>One curated box per season</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>New US region every quarter — surprise drop</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Exclusive subscriber-only perks</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Pause or cancel anytime</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn btn-coral btn-lg" onclick="chooseSubscriptionPlan('season-rotating', 'Season Pass — Rotating Regions', 6900, 'Quarterly', 'rotating')" style="width: 100%;">
+            Choose Rotating Regions
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Group 2: Year of Discovery ($260 / year) -->
+    <div>
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 2rem; font-weight: 800;">
+          Year of Discovery <span style="font-size: 1.2rem; color: var(--color-ink-soft); font-weight: 700;">· $260 / year</span>
+        </h2>
+        <p class="text-ink-soft" style="font-size: 1rem;">Four seasonal boxes across a full year of discovery — our best value.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- Plan 3: Year of Discovery - One Region -->
+        <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;">
+          <span class="pill pill-teal" style="align-self: flex-start; margin-bottom: 1rem;">
+            {% render 'icon-map-pin' %}
+            <span>One Region</span>
+          </span>
+          <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">Year of Discovery</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">A full year of boxes from your chosen home region.</p>
+          
+          <div style="display: flex; align-items: baseline; gap: 0.35rem; margin-bottom: 0.25rem;">
+            <span style="font-family: var(--font-display); font-size: 3rem; font-weight: 800;">$260</span>
+            <span style="font-family: var(--font-display); font-weight: 700; color: var(--color-ink-soft);">/ year</span>
+          </div>
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--color-ink-soft); margin-bottom: 1.5rem;">Billed annually — best value</p>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label class="form-label">Choose your region</label>
+            <select class="form-select" data-plan-region="year-local" style="font-family: var(--font-display); font-weight: 700;">
+              <option value="Southwest Virginia" selected>Southwest Virginia (Now Available)</option>
+              <option value="Blue Ridge NC">Blue Ridge, NC (Summer 2027)</option>
+              <option value="Texas Hill Country">Texas Hill Country, TX (Fall 2027)</option>
+              <option value="Pacific Northwest">Pacific Northwest (Winter 2027)</option>
+            </select>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; flex: 1;">
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Four curated boxes per year (1 each season)</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Your region, all year long</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Exclusive subscriber gifts & offers</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn btn-ink btn-lg" onclick="chooseSubscriptionPlan('year-local', 'Year of Discovery — One Region', 26000, 'Annual', 'local')" style="width: 100%;">
+            Choose One Region
+          </button>
+        </div>
+
+        <!-- Plan 4: Year of Discovery - Rotating Regions -->
+        <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-pop); display: flex; flex-direction: column;">
+          <span class="pill pill-berry" style="align-self: flex-start; margin-bottom: 1rem;">
+            {% render 'icon-sparkles' %}
+            <span>Rotating Regions</span>
+          </span>
+          <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">Year of Discovery</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Four seasons, four US regions, one year of discovery.</p>
+          
+          <div style="display: flex; align-items: baseline; gap: 0.35rem; margin-bottom: 0.25rem;">
+            <span style="font-family: var(--font-display); font-size: 3rem; font-weight: 800;">$260</span>
+            <span style="font-family: var(--font-display); font-weight: 700; color: var(--color-ink-soft);">/ year</span>
+          </div>
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--color-ink-soft); margin-bottom: 1.5rem;">Billed annually — best value</p>
+
+          <div style="margin-bottom: 1.5rem; background-color: var(--color-cream); border: 2px solid var(--color-ink); border-radius: var(--radius-md); padding: 0.85rem; font-size: 0.85rem; font-weight: 600;">
+            A national tour from home. Four distinct regions across four seasons with independent makers curated by locals.
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; flex: 1;">
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Four curated boxes per year</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>New region each season</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="width: 20px; height: 20px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{% render 'icon-check' %}</span>
+              <span>Priority access to limited drops</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn btn-ink btn-lg" onclick="chooseSubscriptionPlan('year-rotating', 'Year of Discovery — Rotating Regions', 26000, 'Annual', 'rotating')" style="width: 100%;">
+            Choose Rotating Regions
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Subscription Plans",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Subscription Plans"
+    }
+  ]
+}
+{% endschema %}

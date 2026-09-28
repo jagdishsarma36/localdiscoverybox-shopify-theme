@@ -1,0 +1,102 @@
+<footer class="site-footer" style="background-color: var(--color-ink); color: var(--color-cream); border-top: 2px solid var(--color-ink); padding: 4rem 0 2rem;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 3rem; margin-bottom: 3.5rem;">
+      <!-- Brand Info -->
+      <div style="max-width: 380px;">
+        <div style="display: inline-block; background-color: var(--color-paper); border: 2px solid rgba(255, 253, 248, 0.3); border-radius: var(--radius-lg); padding: 0.6rem 1rem; margin-bottom: 1.25rem;">
+          {% if section.settings.footer_logo != blank %}
+            <img src="{{ section.settings.footer_logo | image_url: width: 320 }}" alt="{{ shop.name }}" style="width: 170px;">
+          {% else %}
+            <img src="{{ 'logo.png' | asset_url }}" alt="The Local Discovery Box" style="width: 170px;">
+          {% endif %}
+        </div>
+        <p style="color: rgba(255, 253, 248, 0.75); font-size: 0.95rem; line-height: 1.6;">
+          {{ section.settings.about_text | default: "A curated box of local brands, mailed to discovery-loving shoppers across the state. Real trial, real stories, real attribution — starting in Southwest Virginia." }}
+        </p>
+      </div>
+
+      <!-- Explore Links -->
+      <div>
+        <h4 class="font-display" style="font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-sun); margin-bottom: 1.25rem;">
+          Explore
+        </h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; color: rgba(255, 253, 248, 0.85);">
+          <li><a href="/#the-box" style="transition: color var(--transition-fast);">This Edition</a></li>
+          <li><a href="/pages/subscribe" style="transition: color var(--transition-fast);">Subscribe & Save</a></li>
+          <li><a href="/products/the-local-discovery-box" style="transition: color var(--transition-fast);">Buy a Box</a></li>
+          <li><a href="/pages/regions" style="transition: color var(--transition-fast);">Explore States & Regions</a></li>
+        </ul>
+      </div>
+
+      <!-- For Brands Links -->
+      <div>
+        <h4 class="font-display" style="font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-sun); margin-bottom: 1.25rem;">
+          For Brands
+        </h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; color: rgba(255, 253, 248, 0.85);">
+          <li><a href="/pages/for-brands" style="transition: color var(--transition-fast);">Why Join The Box</a></li>
+          <li><a href="/pages/for-brands#apply" style="transition: color var(--transition-fast);">Apply to Be Featured</a></li>
+          <li><a href="/pages/for-brands#faq" style="transition: color var(--transition-fast);">Makers & Brands FAQ</a></li>
+          <li><a href="#" onclick="openRecommendModal('Your State'); return false;" style="transition: color var(--transition-fast);">Recommend a Maker</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter / Updates -->
+      <div>
+        <h4 class="font-display" style="font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-sun); margin-bottom: 1.25rem;">
+          Stay in the Loop
+        </h4>
+        <p style="font-size: 0.9rem; color: rgba(255, 253, 248, 0.75); margin-bottom: 1rem;">
+          Sign up for regional drop notifications, maker spotlights, and early subscriber access.
+        </p>
+        {% form 'customer' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="email" name="contact[email]" placeholder="Your email address" required style="flex: 1; padding: 0.6rem 0.85rem; border-radius: var(--radius-md); border: 2px solid rgba(255, 253, 248, 0.3); background-color: rgba(255, 253, 248, 0.1); color: #FFFFFF; font-family: var(--font-sans); outline: none;">
+            <button type="submit" class="btn btn-sun btn-sm">Join</button>
+          </div>
+          {% if form.posted_successfully? %}
+            <p style="color: var(--color-teal); font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600;">You're subscribed!</p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div style="border-top: 2px dashed rgba(255, 253, 248, 0.2); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.85rem; color: rgba(255, 253, 248, 0.65);">
+      <div>
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. Made with pride for local discovery.
+      </div>
+      <div style="display: flex; gap: 1.5rem;">
+        {% if settings.social_instagram_link != blank %}
+          <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener">Instagram</a>
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener">Facebook</a>
+        {% endif %}
+        {% if settings.social_tiktok_link != blank %}
+          <a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener">TikTok</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "about_text",
+      "label": "About Text",
+      "default": "A curated box of local brands, mailed to discovery-loving shoppers across the state. Real trial, real stories, real attribution — starting in Southwest Virginia."
+    }
+  ]
+}
+{% endschema %}

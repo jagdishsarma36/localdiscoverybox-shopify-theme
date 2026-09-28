@@ -1,0 +1,168 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Local Discovery Box",
+    "theme_version": "1.0.0",
+    "theme_author": "Local Discovery Box Team",
+    "theme_documentation_url": "https://localdiscoverybox.com",
+    "theme_support_url": "https://localdiscoverybox.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Primary Ink / Borders",
+        "default": "#00174F"
+      },
+      {
+        "type": "color",
+        "id": "color_ink_soft",
+        "label": "Soft Ink / Body Text",
+        "default": "#5A677D"
+      },
+      {
+        "type": "color",
+        "id": "color_cream",
+        "label": "Cream / Page Background",
+        "default": "#FFFDF8"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper / Card Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_coral",
+        "label": "Coral Accent / Buttons",
+        "default": "#FF6B5A"
+      },
+      {
+        "type": "color",
+        "id": "color_coral_dark",
+        "label": "Dark Coral Accent",
+        "default": "#E0402B"
+      },
+      {
+        "type": "color",
+        "id": "color_teal",
+        "label": "Teal / Secondary Accent",
+        "default": "#7AE2CE"
+      },
+      {
+        "type": "color",
+        "id": "color_sun",
+        "label": "Sun Yellow Accent",
+        "default": "#FFD166"
+      },
+      {
+        "type": "color",
+        "id": "color_berry",
+        "label": "Berry Purple Accent",
+        "default": "#795290"
+      }
+    ]
+  },
+  {
+    "name": "Branding & Mascots",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Header Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 100,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom Logo Width",
+        "default": 220
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "mascot_lo",
+        "label": "Lo Mascot (Strawberry)"
+      },
+      {
+        "type": "image_picker",
+        "id": "mascot_finn",
+        "label": "Finn Mascot (Squirrel)"
+      }
+    ]
+  },
+  {
+    "name": "Cart & Subscriptions",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart Type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Slide-out Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_free_shipping_bar",
+        "label": "Show Free Shipping Progress Bar",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold ($)",
+        "default": 50
+      },
+      {
+        "type": "product",
+        "id": "subscription_product",
+        "label": "Featured Box / Subscription Product"
+      },
+      {
+        "type": "text",
+        "id": "default_region",
+        "label": "Default Selected Region",
+        "default": "Southwest Virginia"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram Link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook Link"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok Link"
+      }
+    ]
+  }
+]

@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_cream | default: '#FFFDF8' }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Baloo+2:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      :root {
+        --color-ink: {{ settings.color_ink | default: '#00174F' }};
+        --color-ink-soft: {{ settings.color_ink_soft | default: '#5A677D' }};
+        --color-cream: {{ settings.color_cream | default: '#FFFDF8' }};
+        --color-paper: {{ settings.color_paper | default: '#FFFFFF' }};
+        --color-coral: {{ settings.color_coral | default: '#FF6B5A' }};
+        --color-coral-dark: {{ settings.color_coral_dark | default: '#E0402B' }};
+        --color-teal: {{ settings.color_teal | default: '#7AE2CE' }};
+        --color-sun: {{ settings.color_sun | default: '#FFD166' }};
+        --color-berry: {{ settings.color_berry | default: '#795290' }};
+      }
+    </style>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {% render 'cart-drawer' %}
+
+    <!-- Waitlist Modal -->
+    <div class="modal-overlay" data-waitlist-modal>
+      <div class="modal-window">
+        <button type="button" class="modal-close" data-modal-close aria-label="Close modal">
+          {% render 'icon-close' %}
+        </button>
+        <div data-form-fields>
+          <span class="pill pill-coral" style="margin-bottom: 0.75rem;">Waitlist</span>
+          <h3 class="font-display text-2xl font-extrabold" style="margin-bottom: 0.5rem;">Join the <span data-modal-region-title>Region</span> Waitlist</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Be the first to know when boxes drop in this state. First run subscribers get early-bird discounts.</p>
+          <form data-waitlist-form>
+            <input type="hidden" name="region" data-modal-region-input value="">
+            <div style="margin-bottom: 1rem;">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" placeholder="e.g. Jane Doe" required>
+            </div>
+            <div style="margin-bottom: 1.25rem;">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="jane@example.com" required>
+            </div>
+            <button type="submit" class="btn btn-coral btn-lg" style="width: 100%;">Get Early Access</button>
+          </form>
+        </div>
+        <div data-form-success style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="width: 54px; height: 54px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            {% render 'icon-check' %}
+          </div>
+          <h3 class="font-display text-2xl font-extrabold">You're on the waitlist!</h3>
+          <p class="text-ink-soft" style="margin-top: 0.5rem;">We'll email you the moment boxes become available for your region.</p>
+          <button type="button" class="btn btn-sun btn-md" data-modal-close style="margin-top: 1.25rem;">Got it!</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommend A Brand Modal -->
+    <div class="modal-overlay" data-recommend-modal>
+      <div class="modal-window">
+        <button type="button" class="modal-close" data-modal-close aria-label="Close modal">
+          {% render 'icon-close' %}
+        </button>
+        <div data-form-fields>
+          <span class="pill pill-sun" style="margin-bottom: 0.75rem;">Community Tip</span>
+          <h3 class="font-display text-2xl font-extrabold" style="margin-bottom: 0.5rem;">Recommend a Local Maker</h3>
+          <p class="text-ink-soft" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Know an incredible local café, roaster, candle maker, or artisan in <span data-modal-region-title>your region</span>? Tell us!</p>
+          <form data-recommend-form>
+            <input type="hidden" name="region" data-modal-region-input value="">
+            <div style="margin-bottom: 1rem;">
+              <label class="form-label">Business / Maker Name</label>
+              <input type="text" class="form-input" placeholder="e.g. Blue Ridge Roast Co." required>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <label class="form-label">Location (City, State)</label>
+              <input type="text" class="form-input" placeholder="e.g. Roanoke, VA" required>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <label class="form-label">Website or Instagram (optional)</label>
+              <input type="text" class="form-input" placeholder="@blueridgeroast">
+            </div>
+            <div style="margin-bottom: 1.25rem;">
+              <label class="form-label">Why do you love them?</label>
+              <textarea class="form-textarea" rows="3" placeholder="Tell us what makes their product special..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-coral btn-lg" style="width: 100%;">Submit Recommendation</button>
+          </form>
+        </div>
+        <div data-form-success style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="width: 54px; height: 54px; border-radius: 50%; background-color: var(--color-teal); border: 2px solid var(--color-ink); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            {% render 'icon-check' %}
+          </div>
+          <h3 class="font-display text-2xl font-extrabold">Thanks for the recommendation!</h3>
+          <p class="text-ink-soft" style="margin-top: 0.5rem;">Our curation team reviews every single nomination for upcoming boxes.</p>
+          <button type="button" class="btn btn-sun btn-md" data-modal-close style="margin-top: 1.25rem;">Close</button>
+        </div>
+      </div>
+    </div>
+
+    {{ 'theme.js' | asset_url | script_tag }}
+  </body>
+</html>

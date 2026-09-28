@@ -1,0 +1,24 @@
+<section style="padding: 6rem 0; background-color: var(--color-cream); text-align: center;">
+  <div class="container-narrow" style="max-width: 540px;">
+    <div style="background-color: var(--color-paper); border: 2px solid var(--color-ink); border-radius: var(--radius-xl); padding: 3.5rem 2rem; box-shadow: var(--shadow-pop-lg);">
+      <div class="pill pill-coral" style="margin-bottom: 1rem;">404 Page</div>
+      <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">
+        Lost in discovery?
+      </h1>
+      <p class="text-ink-soft" style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+        We couldn't find the page you're looking for. Maybe it's still being curated by our local scouts.
+      </p>
+      <a href="/" class="btn btn-coral btn-lg">
+        <span>Back to The Box</span>
+        {% render 'icon-arrow-right' %}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "headline": "Meet your state's best-kept secrets.",
+        "subheading": "A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once.",
+        "primary_cta_text": "Get the box",
+        "primary_cta_link": "/products/the-local-discovery-box",
+        "secondary_cta_text": "Subscribe & save",
+        "secondary_cta_link": "/pages/subscribe"
+      }
+    },
+    "marquee": {
+      "type": "marquee-ticker",
+      "settings": {}
+    },
+    "featured_brands": {
+      "type": "featured-brands",
+      "settings": {
+        "title": "Six Local Brands. One Box.",
+        "subtitle": "Every season we curate six independent, standout local businesses from across the region."
+      }
+    },
+    "what_ships": {
+      "type": "what-ships",
+      "settings": {}
+    },
+    "regional_pride": {
+      "type": "regional-pride",
+      "settings": {}
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "final-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "featured_brands",
+    "what_ships",
+    "regional_pride",
+    "how_it_works",
+    "testimonials",
+    "final_cta"
+  ]
+}

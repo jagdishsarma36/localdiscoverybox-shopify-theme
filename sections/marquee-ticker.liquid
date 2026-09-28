@@ -1,0 +1,39 @@
+<div class="ticker-wrapper" aria-hidden="true">
+  <div class="ticker-content">
+    {% for i in (1..6) %}
+      <div class="ticker-item">
+        <span>100 boxes only</span>
+        <span>★</span>
+        <span>6 local brands</span>
+        <span>★</span>
+        <span>1 region</span>
+        <span>★</span>
+        <span>Real trial, real stories</span>
+        <span>★</span>
+        <span>Free shipping included</span>
+        <span>★</span>
+        <span>Curated with local pride</span>
+        <span>★</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Ticker",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Custom Ticker Text",
+      "default": "100 boxes only ★ 6 local brands ★ 1 region ★ Real trial, real stories"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Ticker"
+    }
+  ]
+}
+{% endschema %}
