@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -11,9 +20,15 @@
         "secondary_cta_link": "/pages/subscribe"
       }
     },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
     "marquee": {
       "type": "marquee-ticker",
-      "settings": {}
+      "settings": {
+        "ticker_text": "100 boxes only ★ 6 local brands ★ 1 region ★ Real trial, real stories"
+      }
     },
     "featured_brands": {
       "type": "featured-brands",
@@ -30,10 +45,6 @@
       "type": "regional-pride",
       "settings": {}
     },
-    "how_it_works": {
-      "type": "how-it-works",
-      "settings": {}
-    },
     "testimonials": {
       "type": "testimonials",
       "settings": {}
@@ -46,10 +57,10 @@
   "order": [
     "hero",
     "marquee",
+    "how_it_works",
     "featured_brands",
     "what_ships",
     "regional_pride",
-    "how_it_works",
     "testimonials",
     "final_cta"
   ]
