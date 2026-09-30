@@ -924,3 +924,7 @@ img {
   color: var(--color-ink);
   margin-top: 0.25rem;
 }
+
+.visually-hidden {
+  display: none;
+}
