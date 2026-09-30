@@ -298,7 +298,7 @@ img {
   letter-spacing: 0.05em;
 }
 
-.ticker-item marqstr {
+.ticker-item .marqstr {
   color: var(--color-sun);
   font-size: 15px;  
 }
