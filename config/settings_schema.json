@@ -14,7 +14,7 @@
         "type": "color",
         "id": "color_ink",
         "label": "Primary Ink / Borders",
-        "default": "#00174F"
+        "default": "#00174f"
       },
       {
         "type": "color",
@@ -26,7 +26,7 @@
         "type": "color",
         "id": "color_cream",
         "label": "Cream / Page Background",
-        "default": "#FFFDF8"
+        "default": "#d1d0ff"
       },
       {
         "type": "color",
