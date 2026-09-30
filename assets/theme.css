@@ -283,7 +283,7 @@ img {
 .ticker-content {
   display: inline-flex;
   gap: 2rem;
-  animation: ticker 32s linear infinite;
+  animation: ticker 35s linear infinite;
 }
 
 .ticker-item {
@@ -292,10 +292,15 @@ img {
   gap: 1.5rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-ink);
+  font-size: 1.125rem;
+  color: var(--color-cream);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.ticker-item marqstr {
+  color: var(--color-sun);
+  font-size: 15px;  
 }
 
 @keyframes ticker {
