@@ -4,12 +4,12 @@
   --font-display: "Fredoka", "Baloo 2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --color-ink: #00174F;
+  --color-ink: #00174f;
   --color-ink-soft: #5A677D;
-  --color-cream: #FFFDF8;
+  --color-cream: #d1d0ff;
   --color-paper: #FFFFFF;
-  --color-coral: #FF6B5A;
-  --color-coral-dark: #E0402B;
+  --color-coral: #db34e4;
+  --color-coral-dark: #9c1fa5;
   --color-teal: #7AE2CE;
   --color-teal-dark: #2A9D8F;
   --color-sun: #FFD166;
@@ -333,7 +333,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(255, 253, 248, 0.95);
+  background-color: #d1d0ffe6;
   backdrop-filter: blur(10px);
   border-bottom: 2px solid var(--color-ink);
   transition: background-color var(--transition-normal);
@@ -356,7 +356,7 @@ img {
 
 @media (min-width: 768px) {
   .header-logo img {
-    width: 240px;
+    width: 250px;
   }
 }
 
@@ -375,8 +375,8 @@ img {
 .nav-link {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
-  color: rgba(0, 23, 79, 0.8);
+  font-size: 20px;
+  color: #001949cc;
   transition: color var(--transition-fast);
   position: relative;
 }
