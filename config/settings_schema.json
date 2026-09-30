@@ -32,7 +32,7 @@
         "type": "color",
         "id": "color_paper",
         "label": "Paper / Card Background",
-        "default": "#FFFFFF"
+        "default": "#fdfdfd"
       },
       {
         "type": "color",
@@ -56,13 +56,13 @@
         "type": "color",
         "id": "color_sun",
         "label": "Sun Yellow Accent",
-        "default": "#FFD166"
+        "default": "#b6ebb6"
       },
       {
         "type": "color",
         "id": "color_berry",
         "label": "Berry Purple Accent",
-        "default": "#795290"
+        "default": "#00123d"
       }
     ]
   },

@@ -7,13 +7,13 @@
   --color-ink: #00174f;
   --color-ink-soft: #5A677D;
   --color-cream: #d1d0ff;
-  --color-paper: #FFFFFF;
+  --color-paper: #fdfdfd;
   --color-coral: #db34e4;
   --color-coral-dark: #9c1fa5;
   --color-teal: #7AE2CE;
   --color-teal-dark: #2A9D8F;
-  --color-sun: #FFD166;
-  --color-berry: #795290;
+  --color-sun: #b6ebb6;
+  --color-berry: #00123d;
 
   --shadow-pop: 4px 4px 0 0 var(--color-ink);
   --shadow-pop-sm: 2px 2px 0 0 var(--color-ink);
