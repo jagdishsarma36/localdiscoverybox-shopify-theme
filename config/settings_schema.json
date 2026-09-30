@@ -38,7 +38,7 @@
         "type": "color",
         "id": "color_coral",
         "label": "Coral Accent / Buttons",
-        "default": "#FF6B5A"
+        "default": "#db34e4"
       },
       {
         "type": "color",
@@ -50,7 +50,7 @@
         "type": "color",
         "id": "color_teal",
         "label": "Teal / Secondary Accent",
-        "default": "#7AE2CE"
+        "default": "#cffec9"
       },
       {
         "type": "color",
