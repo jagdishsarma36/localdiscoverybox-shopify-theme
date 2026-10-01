@@ -1,22 +1,35 @@
-<section class="hero-section relative overflow-hidden">
+
+<section class="hero-section relative overflow-hidden" style="padding: 3.5rem 0 4.5rem; border-bottom: 2px solid var(--color-ink);">
+
   <!-- Decorative Glows -->
-  <div class="pointer-events-none absolute -left-10 top-16 h-40 w-40 rounded-full bg-sun/50 blur-2xl"></div>
-  <div class="pointer-events-none absolute -right-8 bottom-8 h-52 w-52 rounded-full bg-teal/40 blur-3xl"></div>
+  <div class="pointer-events-none absolute -left-10 top-16 h-40 w-40 rounded-full bg-sun/50 blur-2xl"
+       style="background-color: rgba(255, 209, 102, 0.45);">
+  </div>
 
-  <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
+  <div class="pointer-events-none absolute -right-8 bottom-8 h-52 w-52 rounded-full bg-teal/40 blur-3xl"
+       style="background-color: rgba(122, 226, 206, 0.4);">
+  </div>
 
-    <!-- Hero Left Column -->
+
+  <!-- Main Container / Grid -->
+  <div class="container mx-auto grid items-center gap-10 px-5 md:grid-cols-2 md:py-20"
+       style="position: relative; z-index: 2;">
+
+    <!-- LEFT COLUMN -->
     <div class="animate-pop-in">
 
       <!-- Region Selector -->
-      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3"
+           style="margin-bottom: 1.25rem;">
 
-        <div class="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-paper px-3 py-1.5 font-display text-sm font-bold shadow-pop-sm max-w-[220px] sm:max-w-none">
+        <div class="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-paper px-3 py-1.5 font-display text-sm font-bold shadow-pop-sm"
+             style="max-width: 220px;">
 
           {% render 'icon-map-pin' %}
 
           <select
             class="bg-transparent font-display font-bold text-ink outline-none cursor-pointer min-w-0 truncate"
+            style="background: none; border: none; font-size: 0.9rem; color: var(--color-ink);"
             onchange="if(this.value) window.location.href='/pages/regions#' + this.value"
           >
             <option value="southwest-va" selected>
@@ -34,28 +47,16 @@
             <option value="pacific-northwest">
               Pacific Northwest (Winter 2027)
             </option>
-
-            <option value="hudson-valley">
-              Hudson Valley, NY (Spring 2028)
-            </option>
-
-            <option value="lowcountry-sc">
-              Lowcountry, SC (Summer 2028)
-            </option>
-
-            <option value="richmond-va">
-              Richmond, VA (Fall 2028)
-            </option>
-
-            <option value="northern-va-dc">
-              N. Virginia & DC (Winter 2028)
-            </option>
           </select>
+
         </div>
 
+
+        <!-- View Page -->
         <a
           href="/pages/regions"
           class="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-sun px-3 py-1.5 font-display text-sm font-bold shadow-pop-sm hover:-translate-y-0.5 transition-transform whitespace-nowrap"
+          style="text-decoration: none;"
         >
           <span>View page</span>
           {% render 'icon-arrow-right' %}
@@ -63,26 +64,39 @@
 
       </div>
 
+
       <!-- Headline -->
-      <h1 class="mt-5 font-display text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl">
+      <h1 class="font-display text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl"
+          style="font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.08; margin-bottom: 1.25rem;">
+
         Meet your state's<br>
-        <span class="text-coral whitespace-nowrap">
+
+        <span class="text-coral whitespace-nowrap"
+              style="color: var(--color-coral);">
+
           best-kept secrets.
+
         </span>
+
       </h1>
 
-      <!-- Description -->
-      <p class="mt-5 max-w-md text-lg text-ink-soft">
-        A themed box of small local brands with samples, stories, and exclusive offers,
-        curated by locals and made for the unboxing. Discover six brands from your state at once.
+
+      <!-- Subheading -->
+      <p class="mt-5 max-w-md text-lg text-ink-soft"
+         style="font-size: 1.15rem; max-width: 520px; line-height: 1.6; margin-bottom: 1.75rem;">
+
+        A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once.
+
       </p>
 
+
       <!-- CTA Buttons -->
-      <div class="mt-7 flex flex-wrap gap-3">
+      <div class="mt-7 flex flex-wrap gap-3"
+           style="margin-bottom: 2rem;">
 
         <a
           href="/products/the-local-discovery-box"
-          class="inline-flex items-center justify-center gap-2 font-display font-bold rounded-full border-2 border-ink transition-transform duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none bg-coral text-cream shadow-pop hover:-translate-y-0.5 text-lg px-8 py-4"
+          class="btn btn-coral btn-lg inline-flex items-center justify-center gap-2"
         >
           <span>Get the box</span>
           {% render 'icon-arrow-right' %}
@@ -90,92 +104,155 @@
 
         <a
           href="/pages/subscribe"
-          class="inline-flex items-center justify-center gap-2 font-display font-bold rounded-full border-2 border-ink transition-transform duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none bg-teal text-ink shadow-pop hover:-translate-y-0.5 text-lg px-8 py-4"
+          class="btn btn-teal btn-lg inline-flex items-center justify-center gap-2"
         >
           <span>Subscribe & save</span>
         </a>
 
       </div>
 
-      <!-- Scarcity Box -->
-      <div class="mt-8 max-w-sm rounded-2xl border-2 border-ink bg-paper p-4 shadow-pop">
 
-        <div class="font-display text-sm font-extrabold text-coral-dark uppercase tracking-wide">
-          Limited first run
+      <!-- Scarcity / Progress Meter -->
+      <div
+        class="scarcity-box mt-8 max-w-sm rounded-2xl border-2 border-ink bg-paper p-4 shadow-pop"
+        data-scarcity-bar
+        data-total="100"
+        data-remaining="34"
+        style="max-width: 400px;"
+      >
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem;"
+        >
+          <span>
+            34 of 100 boxes left
+          </span>
+
+          <span style="color: var(--color-coral-dark);">
+            $59 / box
+          </span>
         </div>
 
-        <div class="mt-1 font-display text-xl font-extrabold">
-          34 of 100 boxes left
-        </div>
 
-        <div class="mt-3 h-3 w-full overflow-hidden rounded-full border-2 border-ink bg-paper">
+        <div class="scarcity-bar-bg">
           <div
-            class="h-full bg-coral"
+            class="scarcity-bar-fill"
             style="width: 66%;"
           ></div>
         </div>
 
-        <div class="mt-2 flex items-center justify-between">
-          <p class="text-xs font-semibold text-ink-soft">
-            Once they're gone, they're gone.
-          </p>
 
-          <span class="font-display text-sm font-extrabold text-coral-dark">
-            $59 / box
-          </span>
-        </div>
+        <p
+          class="text-ink-soft"
+          style="font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem;"
+        >
+          Limited first run. Once they're gone, they're gone.
+        </p>
 
       </div>
 
     </div>
 
-    <!-- Hero Right Column -->
-    <div class="flex flex-col gap-4">
 
-      <div class="relative">
+    <!-- RIGHT COLUMN -->
+    <div class="flex flex-col gap-4"
+         style="position: relative; align-items: center;">
 
-        <!-- Box Image -->
-        <div class="animate-float overflow-hidden rounded-3xl border-2 border-ink bg-paper shadow-pop-lg">
+
+      <!-- Image + Badges Wrapper -->
+      <div class="relative"
+           style="width: 100%; max-width: 480px;">
+
+        <!-- Product Image -->
+        <div
+          class="animate-float overflow-hidden rounded-3xl border-2 border-ink bg-paper shadow-pop-lg"
+          style="position: relative; width: 100%; border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-paper); box-shadow: var(--shadow-pop-lg);"
+        >
 
           <img
             src="{{ 'box_hero.webp' | asset_url }}"
             alt="The Local Discovery Box, opened with products"
             class="aspect-square w-full object-cover md:aspect-[4/5]"
+            style="width: 100%; aspect-ratio: 4/4; object-fit: cover;"
           >
 
         </div>
 
-        <!-- Badge 1 -->
-        <div class="absolute -left-3 top-6 -rotate-6 rounded-xl border-2 border-ink bg-sun px-3 py-2 font-display text-sm font-extrabold shadow-pop-sm">
+
+        <!-- Floating Badge 1 -->
+        <div
+          class="absolute -left-3 top-6 -rotate-6 rounded-xl border-2 border-ink bg-sun px-3 py-2 font-display text-sm font-extrabold shadow-pop-sm"
+          style="font-size: 0.95rem; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);"
+        >
           6 brands inside
         </div>
 
-        <!-- Badge 2 -->
-        <div class="absolute -bottom-3 right-6 rotate-3 rounded-xl border-2 border-ink bg-berry px-3 py-2 font-display text-sm font-extrabold text-cream shadow-pop-sm">
+
+        <!-- Floating Badge 2 -->
+        <div
+          class="absolute -bottom-3 right-6 rotate-3 rounded-xl border-2 border-ink bg-berry px-3 py-2 font-display text-sm font-extrabold text-cream shadow-pop-sm"
+          style="font-size: 0.95rem; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);"
+        >
           Real samples & stories
         </div>
 
       </div>
 
-      <!-- Finn Mascot -->
-      <figure class="flex items-end gap-2 self-end pr-2">
 
-        <figcaption class="mb-4 font-display text-base font-bold text-ink">
-          Finn
+      <!-- Lo Mascot -->
+      <figure
+        class="mascot-container"
+        style="position: absolute; right: -1.5rem; top: -1rem; display: none;"
+        id="HeroLoMascot"
+      >
+
+        <img
+          src="{{ 'lo_mascot.png' | asset_url }}"
+          alt="Lo the strawberry mascot"
+          style="height: 150px; width: auto;"
+        >
+
+        <figcaption class="mascot-caption">
+          Lo
         </figcaption>
+
+      </figure>
+
+
+      <!-- Finn Mascot -->
+      <figure
+        class="mascot-container"
+        style="position: absolute; left: -2rem; bottom: -2rem; display: none;"
+        id="HeroFinnMascot"
+      >
 
         <img
           src="{{ 'finn_mascot.png' | asset_url }}"
           alt="Finn the squirrel mascot"
-          class="h-40 w-auto drop-shadow-lg"
+          style="height: 140px; width: auto;"
         >
 
+        <figcaption class="mascot-caption">
+          Finn
+        </figcaption>
+
       </figure>
+
+
+      <!-- Mascot Display Logic -->
+      <script>
+        if (window.innerWidth > 992) {
+          document.getElementById('HeroLoMascot').style.display = 'flex';
+          document.getElementById('HeroFinnMascot').style.display = 'flex';
+        }
+      </script>
 
     </div>
 
   </div>
+
 </section>
+
 
 {% schema %}
 {
