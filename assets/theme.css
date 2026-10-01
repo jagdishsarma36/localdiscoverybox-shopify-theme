@@ -930,6 +930,10 @@ img {
   margin-top: auto;
 }
 
+.mascot-cap {
+  display: flex;
+}
+
 .visually-hidden {
   display: none;
 }
