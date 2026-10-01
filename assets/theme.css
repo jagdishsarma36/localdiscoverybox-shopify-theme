@@ -937,3 +937,10 @@ img {
 .visually-hidden {
   display: none;
 }
+
+.pills-works {
+    color: #9c1fa5;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: .125rem;
+}
