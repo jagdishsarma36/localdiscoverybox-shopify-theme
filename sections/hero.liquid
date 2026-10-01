@@ -63,13 +63,13 @@
 
       <!-- Hero Right Column (Opened Box with Badges & Mascots) -->
       <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
-        <div class="animate-float" style="position: relative; width: 100%; max-width: 480px; border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-paper); box-shadow: var(--shadow-pop-lg); overflow: hidden;">
-          <img src="{{ 'box_hero.webp' | asset_url }}" alt="The Local Discovery Box, opened with products" style="width: 100%; aspect-ratio: 4/4; object-fit: cover;">
-          
-          <!-- Floating Badge 1 -->
-          <div class="pill pill-sun rot-neg-6" style="position: absolute; top: 1.5rem; left: -0.75rem; font-size: 0.95rem; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);">
+       <!-- Floating Badge 1 -->
+          <div class="pill pill-sun rot-neg-6" style="position: absolute; top: 1.5rem; left: 1rem; font-size: 0.95rem; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);z-index: 99999;">
             6 brands inside
           </div>
+
+        <div class="animate-float" style="position: relative; width: 100%; max-width: 480px; border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-paper); box-shadow: var(--shadow-pop-lg); overflow: hidden;">
+          <img src="{{ 'box_hero.webp' | asset_url }}" alt="The Local Discovery Box, opened with products" style="width: 100%; aspect-ratio: 4/4; object-fit: cover;">
         </div>
 
         <div class="mascot-container badge-mascot" style="margin-left: auto; padding-right: 40px; margin-top: -15px;" id="HeroFinnMascot">
