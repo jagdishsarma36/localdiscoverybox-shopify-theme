@@ -1,4 +1,5 @@
 <section
+  id="HeroSection-{{ section.id }}"
   class="hero-section"
   style="
     position: relative;
@@ -8,11 +9,9 @@
   "
 >
 
-  {% comment %}
-    =========================================
-    DECORATIVE GLOWS
-    =========================================
-  {% endcomment %}
+  <!-- =========================================
+       LEFT DECORATIVE GLOW
+  ========================================== -->
 
   {% if section.settings.show_glow_left %}
     <div
@@ -29,6 +28,11 @@
       "
     ></div>
   {% endif %}
+
+
+  <!-- =========================================
+       RIGHT DECORATIVE GLOW
+  ========================================== -->
 
   {% if section.settings.show_glow_right %}
     <div
@@ -64,19 +68,15 @@
       "
     >
 
-      {% comment %}
-        =========================================
-        HERO LEFT COLUMN
-        =========================================
-      {% endcomment %}
+      <!-- =========================================
+           LEFT COLUMN
+      ========================================== -->
 
       <div class="animate-pop-in">
 
-        {% comment %}
-          =========================================
-          REGION SELECTOR
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             REGION SELECTOR
+        ========================================== -->
 
         {% if section.settings.show_region_selector %}
 
@@ -117,7 +117,7 @@
                   cursor: pointer;
                 "
                 onchange="
-                  if(this.value) {
+                  if (this.value) {
                     window.location.href = this.value;
                   }
                 "
@@ -133,7 +133,7 @@
                         selected
                       {% endif %}
                     >
-                      {{ block.settings.region_name }}
+                      {{ block.settings.region_name | escape }}
                     </option>
 
                   {% endif %}
@@ -144,6 +144,8 @@
 
             </div>
 
+
+            <!-- REGION BUTTON -->
 
             {% if section.settings.show_region_button %}
 
@@ -172,11 +174,9 @@
         {% endif %}
 
 
-        {% comment %}
-          =========================================
-          HEADLINE
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             HEADLINE
+        ========================================== -->
 
         {% if section.settings.headline_line_1 != blank
           or section.settings.headline_line_2 != blank
@@ -192,8 +192,11 @@
           >
 
             {% if section.settings.headline_line_1 != blank %}
-              {{ section.settings.headline_line_1 }}
+
+              {{ section.settings.headline_line_1 | escape }}
+
             {% endif %}
+
 
             {% if section.settings.headline_line_2 != blank %}
 
@@ -205,7 +208,7 @@
                   white-space: nowrap;
                 "
               >
-                {{ section.settings.headline_line_2 }}
+                {{ section.settings.headline_line_2 | escape }}
               </span>
 
             {% endif %}
@@ -215,11 +218,9 @@
         {% endif %}
 
 
-        {% comment %}
-          =========================================
-          SUBHEADING
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             SUBHEADING
+        ========================================== -->
 
         {% if section.settings.subheading != blank %}
 
@@ -238,11 +239,9 @@
         {% endif %}
 
 
-        {% comment %}
-          =========================================
-          CTA BUTTONS
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             CTA BUTTONS
+        ========================================== -->
 
         {% if section.settings.show_ctas %}
 
@@ -255,6 +254,8 @@
             "
           >
 
+            <!-- PRIMARY CTA -->
+
             {% if section.settings.primary_cta_text != blank %}
 
               <a
@@ -263,7 +264,7 @@
               >
 
                 <span>
-                  {{ section.settings.primary_cta_text }}
+                  {{ section.settings.primary_cta_text | escape }}
                 </span>
 
                 {% if section.settings.primary_cta_arrow %}
@@ -275,6 +276,8 @@
             {% endif %}
 
 
+            <!-- SECONDARY CTA -->
+
             {% if section.settings.secondary_cta_text != blank %}
 
               <a
@@ -283,7 +286,7 @@
               >
 
                 <span>
-                  {{ section.settings.secondary_cta_text }}
+                  {{ section.settings.secondary_cta_text | escape }}
                 </span>
 
                 {% if section.settings.secondary_cta_arrow %}
@@ -299,11 +302,9 @@
         {% endif %}
 
 
-        {% comment %}
-          =========================================
-          COMING SOON CARD
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             COMING SOON CARD
+        ========================================== -->
 
         {% if section.settings.show_coming_soon %}
 
@@ -331,7 +332,7 @@
                   letter-spacing: 0.05em;
                 "
               >
-                {{ section.settings.coming_soon_label }}
+                {{ section.settings.coming_soon_label | escape }}
               </div>
 
             {% endif %}
@@ -347,7 +348,7 @@
                   font-weight: 800;
                 "
               >
-                {{ section.settings.coming_soon_title }}
+                {{ section.settings.coming_soon_title | escape }}
               </div>
 
             {% endif %}
@@ -364,7 +365,7 @@
                   font-weight: 600;
                 "
               >
-                {{ section.settings.coming_soon_date }}
+                {{ section.settings.coming_soon_date | escape }}
               </p>
 
             {% endif %}
@@ -393,11 +394,9 @@
       </div>
 
 
-      {% comment %}
-        =========================================
-        HERO RIGHT COLUMN
-        =========================================
-      {% endcomment %}
+      <!-- =========================================
+           RIGHT COLUMN
+      ========================================== -->
 
       <div
         style="
@@ -408,11 +407,9 @@
         "
       >
 
-        {% comment %}
-          =========================================
-          BADGE 1
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             BADGE 1
+        ========================================== -->
 
         {% if section.settings.show_badge_1
           and section.settings.badge_1_text != blank
@@ -428,20 +425,18 @@
               font-weight: 800;
               padding: 0.5rem 1rem;
               box-shadow: var(--shadow-pop-sm);
-              z-index: 99999;
+              z-index: 10;
             "
           >
-            {{ section.settings.badge_1_text }}
+            {{ section.settings.badge_1_text | escape }}
           </div>
 
         {% endif %}
 
 
-        {% comment %}
-          =========================================
-          HERO IMAGE
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             HERO IMAGE
+        ========================================== -->
 
         <div
           class="animate-float"
@@ -459,24 +454,23 @@
 
           {% if section.settings.hero_image != blank %}
 
-            <img
-              src="{{ section.settings.hero_image | image_url: width: 1200 }}"
-              alt="{{ section.settings.hero_image_alt | escape }}"
-              width="{{ section.settings.hero_image.width }}"
-              height="{{ section.settings.hero_image.height }}"
-              loading="eager"
-              style="
-                width: 100%;
-                aspect-ratio: 4/4;
-                object-fit: cover;
-              "
-            >
+            {{
+              section.settings.hero_image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'eager',
+                widths: '400,600,800,1000,1200',
+                sizes: '(min-width: 990px) 480px, 100vw',
+                alt: section.settings.hero_image_alt,
+                style: 'width: 100%; aspect-ratio: 4/4; object-fit: cover;'
+            }}
 
           {% else %}
 
             <img
               src="{{ 'box_hero.webp' | asset_url }}"
               alt="{{ section.settings.hero_image_alt | escape }}"
+              loading="eager"
               style="
                 width: 100%;
                 aspect-ratio: 4/4;
@@ -489,11 +483,9 @@
         </div>
 
 
-        {% comment %}
-          =========================================
-          MASCOT + BADGE 2
-          =========================================
-        {% endcomment %}
+        <!-- =========================================
+             MASCOT AREA
+        ========================================== -->
 
         {% if section.settings.show_mascot
           or section.settings.show_badge_2
@@ -506,8 +498,9 @@
               padding-right: 40px;
               margin-top: -15px;
             "
-            id="HeroFinnMascot"
           >
+
+            <!-- BADGE 2 -->
 
             {% if section.settings.show_badge_2
               and section.settings.badge_2_text != blank
@@ -523,33 +516,39 @@
                   box-shadow: var(--shadow-pop-sm);
                 "
               >
-                {{ section.settings.badge_2_text }}
+                {{ section.settings.badge_2_text | escape }}
               </div>
 
             {% endif %}
 
 
+            <!-- MASCOT -->
+
             {% if section.settings.show_mascot %}
 
               <figure class="mascot-cap">
 
-                <figcaption class="mascot-caption">
-                  {{ section.settings.mascot_caption }}
-                </figcaption>
+                {% if section.settings.mascot_caption != blank %}
+
+                  <figcaption class="mascot-caption">
+                    {{ section.settings.mascot_caption | escape }}
+                  </figcaption>
+
+                {% endif %}
+
 
                 {% if section.settings.mascot_image != blank %}
 
-                  <img
-                    src="{{ section.settings.mascot_image | image_url: width: 500 }}"
-                    alt="{{ section.settings.mascot_alt | escape }}"
-                    width="{{ section.settings.mascot_image.width }}"
-                    height="{{ section.settings.mascot_image.height }}"
-                    loading="lazy"
-                    style="
-                      height: 140px;
-                      width: auto;
-                    "
-                  >
+                  {{
+                    section.settings.mascot_image
+                    | image_url: width: 500
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '200,300,400,500',
+                      sizes: '140px',
+                      alt: section.settings.mascot_alt,
+                      style: 'height: 140px; width: auto;'
+                  }}
 
                 {% else %}
 
@@ -580,6 +579,7 @@
   </div>
 
 </section>
+
 
 {% schema %}
 
