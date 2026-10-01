@@ -47,7 +47,7 @@
         </div>
 
         <!-- Scarcity / Progress Meter -->
-        <div class="scarcity-box" data-scarcity-bar data-total="100" data-remaining="34" style="max-width: 400px;">
+        <!-- <div class="scarcity-box" data-scarcity-bar data-total="100" data-remaining="34" style="max-width: 400px;">
           <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem;">
             <span>34 of 100 boxes left</span>
             <span style="color: var(--color-coral-dark);">$59 / box</span>
@@ -58,7 +58,106 @@
           <p class="text-ink-soft" style="font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem;">
             Limited first run. Once they're gone, they're gone.
           </p>
-        </div>
+        </div> -->
+
+        <!-- =========================================
+             COMING SOON CARD
+        ========================================== -->
+
+        {% if section.settings.show_coming_soon %}
+
+          <div
+            style="
+              margin-top: 2rem;
+              max-width: {{ section.settings.coming_soon_width }}px;
+              border-radius: 1rem;
+              border: 2px solid var(--color-ink);
+              background-color: var(--color-paper);
+              padding: 1rem;
+              box-shadow: var(--shadow-pop);
+            "
+          >
+
+            <!-- Coming Soon Label -->
+
+            {% if section.settings.coming_soon_label != blank %}
+
+              <div
+                style="
+                  font-family: var(--font-display);
+                  font-size: 0.875rem;
+                  font-weight: 800;
+                  color: var(--color-coral-dark);
+                  text-transform: uppercase;
+                  letter-spacing: 0.05em;
+                "
+              >
+                {{ section.settings.coming_soon_label }}
+              </div>
+
+            {% endif %}
+
+
+            <!-- Region Name -->
+
+            {% if section.settings.coming_soon_title != blank %}
+
+              <div
+                style="
+                  margin-top: 0.25rem;
+                  font-family: var(--font-display);
+                  font-size: 1.25rem;
+                  font-weight: 800;
+                "
+              >
+                {{ section.settings.coming_soon_title }}
+              </div>
+
+            {% endif %}
+
+
+            <!-- Expected Date -->
+
+            {% if section.settings.coming_soon_date != blank %}
+
+              <p
+                class="text-ink-soft"
+                style="
+                  margin-top: 0.25rem;
+                  margin-bottom: 0;
+                  font-size: 0.75rem;
+                  font-weight: 600;
+                "
+              >
+                {{ section.settings.coming_soon_date }}
+              </p>
+
+            {% endif %}
+
+
+            <!-- Coming Soon Description -->
+
+            {% if section.settings.coming_soon_description != blank %}
+
+              <div
+                class="text-ink-soft"
+                style="
+                  margin-top: 0.5rem;
+                  font-size: 0.75rem;
+                  font-weight: 600;
+                  line-height: 1.5;
+                "
+              >
+                {{ section.settings.coming_soon_description }}
+              </div>
+
+            {% endif %}
+
+          </div>
+
+        {% endif %}
+
+      </div>
       </div>
 
       <!-- Hero Right Column (Opened Box with Badges & Mascots) -->
@@ -143,13 +242,6 @@
 
     {
       "type": "text",
-      "id": "headline",
-      "label": "Headline",
-      "default": "Meet your state's best-kept secrets."
-    },
-
-    {
-      "type": "text",
       "id": "headline_line_1",
       "label": "Headline line 1",
       "default": "Meet your state's"
@@ -170,10 +262,10 @@
     },
 
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once."
+      "default": "<p>A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once.</p>"
     },
 
 
@@ -232,49 +324,53 @@
 
     {
       "type": "header",
-      "content": "Scarcity / Progress"
+      "content": "Coming Soon Card"
     },
 
     {
       "type": "checkbox",
-      "id": "show_scarcity",
-      "label": "Show scarcity meter",
+      "id": "show_coming_soon",
+      "label": "Show coming soon card",
       "default": true
     },
 
     {
-      "type": "number",
-      "id": "total_boxes",
-      "label": "Total boxes",
-      "default": 100
-    },
-
-    {
-      "type": "number",
-      "id": "remaining_boxes",
-      "label": "Remaining boxes",
-      "default": 34
+      "type": "text",
+      "id": "coming_soon_label",
+      "label": "Label",
+      "default": "Coming soon"
     },
 
     {
       "type": "text",
-      "id": "box_label",
-      "label": "Box label",
-      "default": "boxes"
+      "id": "coming_soon_title",
+      "label": "Title",
+      "default": "Blue Ridge, NC"
     },
 
     {
       "type": "text",
-      "id": "price",
-      "label": "Price",
-      "default": "$59 / box"
+      "id": "coming_soon_date",
+      "label": "Expected date",
+      "default": "Expected: Summer 2027"
     },
 
     {
-      "type": "text",
-      "id": "scarcity_message",
-      "label": "Scarcity message",
-      "default": "Limited first run. Once they're gone, they're gone."
+      "type": "richtext",
+      "id": "coming_soon_description",
+      "label": "Description",
+      "default": "<p>Subscribe today and we'll notify you the moment boxes go live in your region.</p>"
+    },
+
+    {
+      "type": "range",
+      "id": "coming_soon_width",
+      "label": "Card maximum width",
+      "min": 250,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 384
     },
 
 
@@ -438,6 +534,7 @@
     {
       "type": "region",
       "name": "Region",
+
       "settings": [
 
         {
@@ -461,6 +558,7 @@
         }
 
       ]
+
     }
 
   ],
