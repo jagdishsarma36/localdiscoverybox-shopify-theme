@@ -1,155 +1,146 @@
-<section class="hero-section" style="position: relative; overflow: hidden; padding: 3.5rem 0 4.5rem; border-bottom: 2px solid var(--color-ink);">
+<section
+  class="hero-section"
+  style="
+    position: relative;
+    overflow: hidden;
+    padding: 3.5rem 0 4.5rem;
+    border-bottom: 2px solid var(--color-ink);
+  "
+>
+
   <!-- Decorative Glows -->
-  <div style="position: absolute; top: 3rem; left: -3rem; width: 14rem; height: 14rem; border-radius: 50%; background-color: rgba(255, 209, 102, 0.45); filter: blur(50px); pointer-events: none;"></div>
-  <div style="position: absolute; bottom: 2rem; right: -2rem; width: 18rem; height: 18rem; border-radius: 50%; background-color: rgba(122, 226, 206, 0.4); filter: blur(60px); pointer-events: none;"></div>
+  {% if section.settings.show_glow_left %}
+    <div
+      style="
+        position: absolute;
+        top: 3rem;
+        left: -3rem;
+        width: 14rem;
+        height: 14rem;
+        border-radius: 50%;
+        background-color: {{ section.settings.glow_left_color }};
+        filter: blur({{ section.settings.glow_left_blur }}px);
+        pointer-events: none;
+      "
+    ></div>
+  {% endif %}
+
+  {% if section.settings.show_glow_right %}
+    <div
+      style="
+        position: absolute;
+        bottom: 2rem;
+        right: -2rem;
+        width: 18rem;
+        height: 18rem;
+        border-radius: 50%;
+        background-color: {{ section.settings.glow_right_color }};
+        filter: blur({{ section.settings.glow_right_blur }}px);
+        pointer-events: none;
+      "
+    ></div>
+  {% endif %}
+
 
   <div class="container" style="position: relative; z-index: 2;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center;">
-      <!-- Hero Left Column -->
+
+    <div
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 3.5rem;
+        align-items: center;
+      "
+    >
+
+      <!-- =========================================
+           HERO LEFT COLUMN
+      ========================================== -->
+
       <div class="animate-pop-in">
-        <!-- Region Selector Pill -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
-          <div style="display: inline-flex; align-items: center; gap: 0.5rem; border-radius: var(--radius-full); border: 2px solid var(--color-ink); background-color: var(--color-paper); padding: 0.35rem 0.85rem; box-shadow: var(--shadow-pop-sm);">
-            {% render 'icon-map-pin' %}
-            <select style="background: none; border: none; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: var(--color-ink); outline: none; cursor: pointer;" onchange="if(this.value) window.location.href='/pages/regions#' + this.value">
-              <option value="southwest-va" selected>SW Virginia (Now Available)</option>
-              <option value="blue-ridge-nc">Blue Ridge, NC (Summer 2027)</option>
-              <option value="texas-hill-country">Texas Hill Country, TX (Fall 2027)</option>
-              <option value="pacific-northwest">Pacific Northwest (Winter 2027)</option>
-            </select>
-          </div>
-          <a href="/pages/regions" class="pill pill-sun" style="text-decoration: none; box-shadow: var(--shadow-pop-sm); transition: transform var(--transition-fast);">
-            <span>View page</span>
-            {% render 'icon-arrow-right' %}
-          </a>
-        </div>
 
-        <!-- Headline -->
-        <h1 style="font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.08; margin-bottom: 1.25rem;">
-          Meet your state's<br>
-          <span style="color: var(--color-coral); white-space: nowrap;">best-kept secrets.</span>
-        </h1>
-
-        <!-- Subheading -->
-        <p class="text-ink-soft" style="font-size: 1.15rem; max-width: 520px; line-height: 1.6; margin-bottom: 1.75rem;">
-          A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-          <a href="/products/the-local-discovery-box" class="btn btn-coral btn-lg">
-            <span>Get the box</span>
-            {% render 'icon-arrow-right' %}
-          </a>
-          <a href="/pages/subscribe" class="btn btn-teal btn-lg">
-            <span>Subscribe & save</span>
-          </a>
-        </div>
-
-        <!-- Scarcity / Progress Meter -->
-        <!-- <div class="scarcity-box" data-scarcity-bar data-total="100" data-remaining="34" style="max-width: 400px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem;">
-            <span>34 of 100 boxes left</span>
-            <span style="color: var(--color-coral-dark);">$59 / box</span>
-          </div>
-          <div class="scarcity-bar-bg">
-            <div class="scarcity-bar-fill" style="width: 66%;"></div>
-          </div>
-          <p class="text-ink-soft" style="font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem;">
-            Limited first run. Once they're gone, they're gone.
-          </p>
-        </div> -->
-
-        <!-- =========================================
-             COMING SOON CARD
-        ========================================== -->
-
-        {% if section.settings.show_coming_soon %}
+        <!-- Region Selector -->
+        {% if section.settings.show_region_selector %}
 
           <div
             style="
-              margin-top: 2rem;
-              max-width: {{ section.settings.coming_soon_width }}px;
-              border-radius: 1rem;
-              border: 2px solid var(--color-ink);
-              background-color: var(--color-paper);
-              padding: 1rem;
-              box-shadow: var(--shadow-pop);
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 0.75rem;
+              margin-bottom: 1.25rem;
             "
           >
 
-            <!-- Coming Soon Label -->
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                border-radius: var(--radius-full);
+                border: 2px solid var(--color-ink);
+                background-color: var(--color-paper);
+                padding: 0.35rem 0.85rem;
+                box-shadow: var(--shadow-pop-sm);
+              "
+            >
 
-            {% if section.settings.coming_soon_label != blank %}
+              {% render 'icon-map-pin' %}
 
-              <div
+              <select
                 style="
+                  background: none;
+                  border: none;
                   font-family: var(--font-display);
-                  font-size: 0.875rem;
-                  font-weight: 800;
-                  color: var(--color-coral-dark);
-                  text-transform: uppercase;
-                  letter-spacing: 0.05em;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  color: var(--color-ink);
+                  outline: none;
+                  cursor: pointer;
                 "
+                onchange="if(this.value) window.location.href=this.value"
               >
-                {{ section.settings.coming_soon_label }}
-              </div>
 
-            {% endif %}
+                {% for block in section.blocks %}
+
+                  {% if block.type == 'region' %}
+
+                    <option
+                      value="{{ block.settings.region_url }}"
+                      {% if block.settings.selected %}selected{% endif %}
+                      {{ block.shopify_attributes }}
+                    >
+                      {{ block.settings.region_name }}
+                    </option>
+
+                  {% endif %}
+
+                {% endfor %}
+
+              </select>
+
+            </div>
 
 
-            <!-- Region Name -->
+            {% if section.settings.show_region_button %}
 
-            {% if section.settings.coming_soon_title != blank %}
-
-              <div
+              <a
+                href="{{ section.settings.region_button_link }}"
+                class="pill pill-sun"
                 style="
-                  margin-top: 0.25rem;
-                  font-family: var(--font-display);
-                  font-size: 1.25rem;
-                  font-weight: 800;
+                  text-decoration: none;
+                  box-shadow: var(--shadow-pop-sm);
+                  transition: transform var(--transition-fast);
                 "
               >
-                {{ section.settings.coming_soon_title }}
-              </div>
 
-            {% endif %}
+                <span>
+                  {{ section.settings.region_button_text }}
+                </span>
 
+                {% render 'icon-arrow-right' %}
 
-            <!-- Expected Date -->
-
-            {% if section.settings.coming_soon_date != blank %}
-
-              <p
-                class="text-ink-soft"
-                style="
-                  margin-top: 0.25rem;
-                  margin-bottom: 0;
-                  font-size: 0.75rem;
-                  font-weight: 600;
-                "
-              >
-                {{ section.settings.coming_soon_date }}
-              </p>
-
-            {% endif %}
-
-
-            <!-- Coming Soon Description -->
-
-            {% if section.settings.coming_soon_description != blank %}
-
-              <div
-                class="text-ink-soft"
-                style="
-                  margin-top: 0.5rem;
-                  font-size: 0.75rem;
-                  font-weight: 600;
-                  line-height: 1.5;
-                "
-              >
-                {{ section.settings.coming_soon_description }}
-              </div>
+              </a>
 
             {% endif %}
 
@@ -157,43 +148,477 @@
 
         {% endif %}
 
-      </div>
-      </div>
 
-      <!-- Hero Right Column (Opened Box with Badges & Mascots) -->
-      <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
-       <!-- Floating Badge 1 -->
-          <div class="pill pill-sun rot-neg-6" style="position: absolute; top: 1.5rem; left: 1rem; font-size: 0.95rem; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);z-index: 99999;">
-            6 brands inside
+        <!-- =========================================
+             HEADLINE
+        ========================================== -->
+
+        <h1
+          style="
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 1.25rem;
+          "
+        >
+
+          {% if section.settings.headline_line_1 != blank %}
+            {{ section.settings.headline_line_1 }}
+          {% endif %}
+
+          {% if section.settings.headline_line_2 != blank %}
+
+            <br>
+
+            <span
+              style="
+                color: {{ section.settings.headline_color }};
+                white-space: nowrap;
+              "
+            >
+              {{ section.settings.headline_line_2 }}
+            </span>
+
+          {% endif %}
+
+        </h1>
+
+
+        <!-- =========================================
+             WYSIWYG SUBHEADING
+        ========================================== -->
+
+        {% if section.settings.subheading != blank %}
+
+          <div
+            class="text-ink-soft hero-subheading"
+            style="
+              font-size: 1.15rem;
+              max-width: 520px;
+              line-height: 1.6;
+              margin-bottom: 1.75rem;
+            "
+          >
+            {{ section.settings.subheading }}
           </div>
 
-        <div class="animate-float" style="position: relative; width: 100%; max-width: 480px; border-radius: var(--radius-xl); border: 2px solid var(--color-ink); background-color: var(--color-paper); box-shadow: var(--shadow-pop-lg); overflow: hidden;">
-          <img src="{{ 'box_hero.webp' | asset_url }}" alt="The Local Discovery Box, opened with products" style="width: 100%; aspect-ratio: 4/4; object-fit: cover;">
-        </div>
+        {% endif %}
 
-        <div class="mascot-container badge-mascot" style="margin-left: auto; padding-right: 40px; margin-top: -15px;" id="HeroFinnMascot">
-          <!-- Floating Badge 2 -->
-          <div class="pill pill-berry rot-pos-3" style=" font-size: 0.95rem; margin-bottom: 5px; font-weight: 800; padding: 0.5rem 1rem; box-shadow: var(--shadow-pop-sm);">
-            Real samples & stories
+
+        <!-- =========================================
+             CTA BUTTONS
+        ========================================== -->
+
+        {% if section.settings.show_ctas %}
+
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+              margin-bottom: 2rem;
+            "
+          >
+
+            {% if section.settings.primary_cta_text != blank %}
+
+              <a
+                href="{{ section.settings.primary_cta_link }}"
+                class="btn btn-coral btn-lg"
+              >
+                <span>
+                  {{ section.settings.primary_cta_text }}
+                </span>
+
+                {% if section.settings.primary_cta_arrow %}
+                  {% render 'icon-arrow-right' %}
+                {% endif %}
+              </a>
+
+            {% endif %}
+
+
+            {% if section.settings.secondary_cta_text != blank %}
+
+              <a
+                href="{{ section.settings.secondary_cta_link }}"
+                class="btn btn-teal btn-lg"
+              >
+                <span>
+                  {{ section.settings.secondary_cta_text }}
+                </span>
+
+                {% if section.settings.secondary_cta_arrow %}
+                  {% render 'icon-arrow-right' %}
+                {% endif %}
+              </a>
+
+            {% endif %}
+
           </div>
-        
-        <!-- Mascot Finn the Squirrel -->
-        <figure class="mascot-cap">
-          <figcaption class="mascot-caption">Finn</figcaption>
-          <img src="{{ 'finn_mascot.png' | asset_url }}" alt="Finn the squirrel mascot" style="height: 140px; width: auto;">
-        </figure>
+
+        {% endif %}
+
+
+        <!-- =========================================
+             OPTIONAL BOTTOM CARD
+        ========================================== -->
+
+        {% case section.settings.bottom_card_type %}
+
+
+          <!-- =======================================
+               SCARCITY / PROGRESS METER
+          ======================================== -->
+
+          {% when 'scarcity' %}
+
+            {% assign total_boxes = section.settings.total_boxes | plus: 0 %}
+            {% assign remaining_boxes = section.settings.remaining_boxes | plus: 0 %}
+
+            {% if total_boxes > 0 %}
+
+              {% assign sold_boxes = total_boxes | minus: remaining_boxes %}
+              {% assign progress = sold_boxes | times: 100.0 | divided_by: total_boxes %}
+
+            {% else %}
+
+              {% assign progress = 0 %}
+
+            {% endif %}
+
+
+            <div
+              class="scarcity-box"
+              data-scarcity-bar
+              data-total="{{ total_boxes }}"
+              data-remaining="{{ remaining_boxes }}"
+              style="max-width: 400px;"
+            >
+
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  font-family: var(--font-display);
+                  font-weight: 800;
+                  font-size: 0.95rem;
+                "
+              >
+
+                <span>
+                  {{ remaining_boxes }} of {{ total_boxes }}
+                  {{ section.settings.box_label }} left
+                </span>
+
+                {% if section.settings.price != blank %}
+
+                  <span style="color: var(--color-coral-dark);">
+                    {{ section.settings.price }}
+                  </span>
+
+                {% endif %}
+
+              </div>
+
+
+              <div class="scarcity-bar-bg">
+
+                <div
+                  class="scarcity-bar-fill"
+                  style="width: {{ progress }}%;"
+                ></div>
+
+              </div>
+
+
+              {% if section.settings.scarcity_message != blank %}
+
+                <p
+                  class="text-ink-soft"
+                  style="
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-top: 0.5rem;
+                  "
+                >
+                  {{ section.settings.scarcity_message }}
+                </p>
+
+              {% endif %}
+
+            </div>
+
+
+          <!-- =======================================
+               COMING SOON CARD
+          ======================================== -->
+
+          {% when 'coming_soon' %}
+
+            <div
+              style="
+                margin-top: 2rem;
+                max-width: {{ section.settings.coming_soon_width }}px;
+                border-radius: 1rem;
+                border: 2px solid var(--color-ink);
+                background-color: var(--color-paper);
+                padding: 1rem;
+                box-shadow: var(--shadow-pop);
+              "
+            >
+
+              <!-- Label -->
+
+              {% if section.settings.coming_soon_label != blank %}
+
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 0.875rem;
+                    font-weight: 800;
+                    color: var(--color-coral-dark);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                  "
+                >
+                  {{ section.settings.coming_soon_label }}
+                </div>
+
+              {% endif %}
+
+
+              <!-- Title -->
+
+              {% if section.settings.coming_soon_title != blank %}
+
+                <div
+                  style="
+                    margin-top: 0.25rem;
+                    font-family: var(--font-display);
+                    font-size: 1.25rem;
+                    font-weight: 800;
+                  "
+                >
+                  {{ section.settings.coming_soon_title }}
+                </div>
+
+              {% endif %}
+
+
+              <!-- Expected Date -->
+
+              {% if section.settings.coming_soon_date != blank %}
+
+                <p
+                  class="text-ink-soft"
+                  style="
+                    margin-top: 0.25rem;
+                    margin-bottom: 0;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                  "
+                >
+                  {{ section.settings.coming_soon_date }}
+                </p>
+
+              {% endif %}
+
+
+              <!-- Description -->
+
+              {% if section.settings.coming_soon_description != blank %}
+
+                <div
+                  class="text-ink-soft"
+                  style="
+                    margin-top: 0.5rem;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    line-height: 1.5;
+                  "
+                >
+                  {{ section.settings.coming_soon_description }}
+                </div>
+
+              {% endif %}
+
+            </div>
+
+
+          <!-- =======================================
+               NONE
+          ======================================== -->
+
+          {% when 'none' %}
+
+            {%- comment -%}
+              No bottom card.
+            {%- endcomment -%}
+
+        {% endcase %}
+
+      </div>
+
+
+      <!-- =========================================
+           HERO RIGHT COLUMN
+      ========================================== -->
+
+      <div
+        style="
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        "
+      >
+
+        <!-- Floating Badge 1 -->
+
+        {% if section.settings.show_badge_1 %}
+
+          <div
+            class="pill pill-sun rot-neg-6"
+            style="
+              position: absolute;
+              top: 1.5rem;
+              left: 1rem;
+              font-size: 0.95rem;
+              font-weight: 800;
+              padding: 0.5rem 1rem;
+              box-shadow: var(--shadow-pop-sm);
+              z-index: 99999;
+            "
+          >
+            {{ section.settings.badge_1_text }}
+          </div>
+
+        {% endif %}
+
+
+        <!-- Hero Image -->
+
+        <div
+          class="animate-float"
+          style="
+            position: relative;
+            width: 100%;
+            max-width: {{ section.settings.hero_image_width }}px;
+            border-radius: var(--radius-xl);
+            border: 2px solid var(--color-ink);
+            background-color: var(--color-paper);
+            box-shadow: var(--shadow-pop-lg);
+            overflow: hidden;
+          "
+        >
+
+          {% if section.settings.hero_image != blank %}
+
+            {{
+              section.settings.hero_image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'eager',
+                alt: section.settings.hero_image_alt,
+                style: 'width: 100%; aspect-ratio: 4/4; object-fit: cover;'
+            }}
+
+          {% else %}
+
+            <img
+              src="{{ 'box_hero.webp' | asset_url }}"
+              alt="{{ section.settings.hero_image_alt }}"
+              style="
+                width: 100%;
+                aspect-ratio: 4/4;
+                object-fit: cover;
+              "
+            >
+
+          {% endif %}
+
         </div>
 
-        <script>
-          if (window.innerWidth > 992) {
-            document.getElementById('HeroLoMascot').style.display = 'flex';
-            document.getElementById('HeroFinnMascot').style.display = 'flex';
-          }
-        </script>
+
+        <!-- Mascot -->
+
+        {% if section.settings.show_mascot %}
+
+          <div
+            class="mascot-container badge-mascot"
+            style="
+              margin-left: auto;
+              padding-right: 40px;
+              margin-top: -15px;
+            "
+            id="HeroFinnMascot"
+          >
+
+            <!-- Floating Badge 2 -->
+
+            {% if section.settings.show_badge_2 %}
+
+              <div
+                class="pill pill-berry rot-pos-3"
+                style="
+                  font-size: 0.95rem;
+                  margin-bottom: 5px;
+                  font-weight: 800;
+                  padding: 0.5rem 1rem;
+                  box-shadow: var(--shadow-pop-sm);
+                "
+              >
+                {{ section.settings.badge_2_text }}
+              </div>
+
+            {% endif %}
+
+
+            <!-- Mascot -->
+
+            <figure class="mascot-cap">
+
+              <figcaption class="mascot-caption">
+                {{ section.settings.mascot_caption }}
+              </figcaption>
+
+              {% if section.settings.mascot_image != blank %}
+
+                {{
+                  section.settings.mascot_image
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: section.settings.mascot_alt,
+                    style: 'height: 140px; width: auto;'
+                }}
+
+              {% else %}
+
+                <img
+                  src="{{ 'finn_mascot.png' | asset_url }}"
+                  alt="{{ section.settings.mascot_alt }}"
+                  style="height: 140px; width: auto;"
+                >
+
+              {% endif %}
+
+            </figure>
+
+          </div>
+
+        {% endif %}
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
 
 {% schema %}
 
@@ -231,7 +656,8 @@
     {
       "type": "url",
       "id": "region_button_link",
-      "label": "Region button link"
+      "label": "Region button link",
+      "default": "/pages/regions"
     },
 
 
@@ -324,14 +750,76 @@
 
     {
       "type": "header",
-      "content": "Coming Soon Card"
+      "content": "Bottom Card"
     },
 
     {
-      "type": "checkbox",
-      "id": "show_coming_soon",
-      "label": "Show coming soon card",
-      "default": true
+      "type": "select",
+      "id": "bottom_card_type",
+      "label": "Bottom card type",
+      "default": "coming_soon",
+
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "scarcity",
+          "label": "Scarcity / Progress Meter"
+        },
+        {
+          "value": "coming_soon",
+          "label": "Coming Soon Card"
+        }
+      ]
+    },
+
+
+    {
+      "type": "header",
+      "content": "Scarcity / Progress Meter"
+    },
+
+    {
+      "type": "number",
+      "id": "total_boxes",
+      "label": "Total boxes",
+      "default": 100
+    },
+
+    {
+      "type": "number",
+      "id": "remaining_boxes",
+      "label": "Remaining boxes",
+      "default": 34
+    },
+
+    {
+      "type": "text",
+      "id": "box_label",
+      "label": "Box label",
+      "default": "boxes"
+    },
+
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$59 / box"
+    },
+
+    {
+      "type": "text",
+      "id": "scarcity_message",
+      "label": "Scarcity message",
+      "default": "Limited first run. Once they're gone, they're gone."
+    },
+
+
+    {
+      "type": "header",
+      "content": "Coming Soon Card"
     },
 
     {
@@ -568,6 +1056,10 @@
 
     {
       "name": "Hero Section",
+
+      "settings": {
+        "bottom_card_type": "coming_soon"
+      },
 
       "blocks": [
 
