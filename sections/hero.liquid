@@ -580,3 +580,425 @@
   </div>
 
 </section>
+
+{% schema %}
+
+{
+  "name": "Hero Section",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Region Selector"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_region_selector",
+      "label": "Show region selector",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_region_button",
+      "label": "Show region button",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "region_button_text",
+      "label": "Region button text",
+      "default": "View page"
+    },
+
+    {
+      "type": "url",
+      "id": "region_button_link",
+      "label": "Region button link"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+
+    {
+      "type": "text",
+      "id": "headline_line_1",
+      "label": "Headline line 1",
+      "default": "Meet your state's"
+    },
+
+    {
+      "type": "text",
+      "id": "headline_line_2",
+      "label": "Headline highlighted line",
+      "default": "best-kept secrets."
+    },
+
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline highlight color",
+      "default": "#F26B5B"
+    },
+
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>A themed box of small local brands with samples, stories, and exclusive offers, curated by locals and made for the unboxing. Discover six brands from your state at once.</p>"
+    },
+
+
+    {
+      "type": "header",
+      "content": "CTA Buttons"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_ctas",
+      "label": "Show CTA buttons",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary CTA text",
+      "default": "Get the box"
+    },
+
+    {
+      "type": "url",
+      "id": "primary_cta_link",
+      "label": "Primary CTA link"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "primary_cta_arrow",
+      "label": "Show arrow on primary CTA",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA text",
+      "default": "Subscribe & save"
+    },
+
+    {
+      "type": "url",
+      "id": "secondary_cta_link",
+      "label": "Secondary CTA link"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "secondary_cta_arrow",
+      "label": "Show arrow on secondary CTA",
+      "default": false
+    },
+
+
+    {
+      "type": "header",
+      "content": "Coming Soon Card"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_coming_soon",
+      "label": "Show coming soon card",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "coming_soon_label",
+      "label": "Label",
+      "default": "Coming soon"
+    },
+
+    {
+      "type": "text",
+      "id": "coming_soon_title",
+      "label": "Title",
+      "default": "Blue Ridge, NC"
+    },
+
+    {
+      "type": "text",
+      "id": "coming_soon_date",
+      "label": "Expected date",
+      "default": "Expected: Summer 2027"
+    },
+
+    {
+      "type": "richtext",
+      "id": "coming_soon_description",
+      "label": "Description",
+      "default": "<p>Subscribe today and we'll notify you the moment boxes go live in your region.</p>"
+    },
+
+    {
+      "type": "range",
+      "id": "coming_soon_width",
+      "label": "Card maximum width",
+      "min": 250,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 384
+    },
+
+
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "default": "The Local Discovery Box, opened with products"
+    },
+
+    {
+      "type": "range",
+      "id": "hero_image_width",
+      "label": "Hero image maximum width",
+      "min": 300,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 480
+    },
+
+
+    {
+      "type": "header",
+      "content": "Floating Badges"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_badge_1",
+      "label": "Show badge 1",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1 text",
+      "default": "6 brands inside"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_badge_2",
+      "label": "Show badge 2",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2 text",
+      "default": "Real samples & stories"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mascot"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_mascot",
+      "label": "Show mascot",
+      "default": true
+    },
+
+    {
+      "type": "image_picker",
+      "id": "mascot_image",
+      "label": "Mascot image"
+    },
+
+    {
+      "type": "text",
+      "id": "mascot_caption",
+      "label": "Mascot caption",
+      "default": "Finn"
+    },
+
+    {
+      "type": "text",
+      "id": "mascot_alt",
+      "label": "Mascot alt text",
+      "default": "Finn the squirrel mascot"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Decorative Glows"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_glow_left",
+      "label": "Show left glow",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "glow_left_color",
+      "label": "Left glow color",
+      "default": "#FFD166"
+    },
+
+    {
+      "type": "range",
+      "id": "glow_left_blur",
+      "label": "Left glow blur",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_glow_right",
+      "label": "Show right glow",
+      "default": true
+    },
+
+    {
+      "type": "color",
+      "id": "glow_right_color",
+      "label": "Right glow color",
+      "default": "#7AE2CE"
+    },
+
+    {
+      "type": "range",
+      "id": "glow_right_blur",
+      "label": "Right glow blur",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+
+  ],
+
+
+  "blocks": [
+
+    {
+      "type": "region",
+      "name": "Region",
+
+      "settings": [
+
+        {
+          "type": "text",
+          "id": "region_name",
+          "label": "Region name",
+          "default": "SW Virginia (Now Available)"
+        },
+
+        {
+          "type": "url",
+          "id": "region_url",
+          "label": "Region link"
+        },
+
+        {
+          "type": "checkbox",
+          "id": "selected",
+          "label": "Selected by default",
+          "default": false
+        }
+
+      ]
+
+    }
+
+  ],
+
+
+  "presets": [
+
+    {
+      "name": "Hero Section",
+
+      "blocks": [
+
+        {
+          "type": "region",
+          "settings": {
+            "region_name": "SW Virginia (Now Available)",
+            "region_url": "/pages/regions#southwest-va",
+            "selected": true
+          }
+        },
+
+        {
+          "type": "region",
+          "settings": {
+            "region_name": "Blue Ridge, NC (Summer 2027)",
+            "region_url": "/pages/regions#blue-ridge-nc",
+            "selected": false
+          }
+        },
+
+        {
+          "type": "region",
+          "settings": {
+            "region_name": "Texas Hill Country, TX (Fall 2027)",
+            "region_url": "/pages/regions#texas-hill-country",
+            "selected": false
+          }
+        },
+
+        {
+          "type": "region",
+          "settings": {
+            "region_name": "Pacific Northwest (Winter 2027)",
+            "region_url": "/pages/regions#pacific-northwest",
+            "selected": false
+          }
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+
+{% endschema %}
